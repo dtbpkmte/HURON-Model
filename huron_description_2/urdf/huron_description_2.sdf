@@ -1,0 +1,648 @@
+<sdf version='1.7'>
+  <model name='huron_description_2'>
+    <link name='base_footprint'>
+      <inertial>
+        <pose>0 1e-06 1.32698 0 -0 0</pose>
+        <mass>3.40724</mass>
+        <inertia>
+          <ixx>0.00319004</ixx>
+          <ixy>7.149e-11</ixy>
+          <ixz>6.03129e-11</ixz>
+          <iyy>0.0105312</iyy>
+          <iyz>6.92595e-09</iyz>
+          <izz>0.0123155</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_footprint_fixed_joint_lump__base_link_collision'>
+        <pose>0 0 1.3 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_footprint_fixed_joint_lump__base_link_visual'>
+        <pose>0 0 1.3 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='hip_2_left_upper_thigh' type='revolute'>
+      <pose relative_to='base_footprint'>-0.0775 0 1.3 -3.14159 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>left_upper_thigh</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_upper_thigh'>
+      <pose relative_to='hip_2_left_upper_thigh'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.00063 0.000539 0.081628 0 -0 0</pose>
+        <mass>1.69685</mass>
+        <inertia>
+          <ixx>0.00227023</ixx>
+          <ixy>-2.54431e-06</ixy>
+          <ixz>-6.64623e-06</ixz>
+          <iyy>0.00267462</iyy>
+          <iyz>-4.6965e-08</iyz>
+          <izz>0.00123801</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_upper_thigh_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_upper_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_upper_thigh_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_upper_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_thigh_roll' type='revolute'>
+      <pose relative_to='left_upper_thigh'>0 0 0.145124 1.5708 -0 0</pose>
+      <parent>left_upper_thigh</parent>
+      <child>left_middle_thigh</child>
+      <axis>
+        <xyz>-0.006292 0 -0.99998</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_middle_thigh'>
+      <pose relative_to='left_thigh_roll'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.071962 -0.006115 -6.8e-05 0 -0 0</pose>
+        <mass>1.18838</mass>
+        <inertia>
+          <ixx>0.000982221</ixx>
+          <ixy>-9.86513e-08</ixy>
+          <ixz>-3.73488e-07</ixz>
+          <iyy>0.000970453</iyy>
+          <iyz>9.79041e-08</iyz>
+          <izz>0.000923655</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_middle_thigh_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_middle_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_middle_thigh_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_middle_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_thigh_pitch' type='revolute'>
+      <pose relative_to='left_middle_thigh'>0 0 0 -1.5708 0 -1.5708</pose>
+      <parent>left_middle_thigh</parent>
+      <child>left_lower_thigh</child>
+      <axis>
+        <xyz>0 0.006292 0.99998</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_lower_thigh'>
+      <pose relative_to='left_thigh_pitch'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.266033 -0.000288 -0.053151 0 -0 0</pose>
+        <mass>4.25436</mass>
+        <inertia>
+          <ixx>0.00345274</ixx>
+          <ixy>1.2487e-05</ixy>
+          <ixz>0.00197964</ixz>
+          <iyy>0.0100324</iyy>
+          <iyz>3.64016e-07</iyz>
+          <izz>0.0100902</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_lower_thigh_collision'>
+        <pose>-0.25 0 -0.07 3.14159 1.17159 3.14159</pose>
+        <geometry>
+          <cylinder>
+            <length>0.5</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='left_lower_thigh_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_lower_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_knee' type='revolute'>
+      <pose relative_to='left_lower_thigh'>-0.511278 5e-05 -1.7e-05 -0.006292 0 0</pose>
+      <parent>left_lower_thigh</parent>
+      <child>left_shin</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_shin'>
+      <pose relative_to='left_knee'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.114651 -0.02006 0.000819 0 -0 0</pose>
+        <mass>1.60581</mass>
+        <inertia>
+          <ixx>0.00116466</ixx>
+          <ixy>-5.06243e-06</ixy>
+          <ixz>-2.95037e-10</ixz>
+          <iyy>0.00754379</iyy>
+          <iyz>-2.60872e-11</iyz>
+          <izz>0.00773513</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_shin_collision'>
+        <pose>-0.2125 -0.0115 0 0 1.5708 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.43</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='left_shin_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_shin.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_ankle_roll' type='revolute'>
+      <pose relative_to='left_shin'>-0.425 -0.0345 0 1.5708 -0 0</pose>
+      <parent>left_shin</parent>
+      <child>left_ankle_roll_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_ankle_roll_link'>
+      <pose relative_to='left_ankle_roll'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-1.2e-05 1e-06 0.000278 0 -0 0</pose>
+        <mass>0.0816413</mass>
+        <inertia>
+          <ixx>2.09932e-05</ixx>
+          <ixy>-5.12265e-07</ixy>
+          <ixz>-2.80748e-10</ixz>
+          <iyy>1.03508e-05</iyy>
+          <iyz>4.07293e-12</iyz>
+          <izz>2.23948e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_ankle_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_ankle_roll_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_ankle_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_ankle_roll_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_ankle_pitch' type='revolute'>
+      <pose relative_to='left_ankle_roll_link'>0 0 0 -1.5708 0 0</pose>
+      <parent>left_ankle_roll_link</parent>
+      <child>left_foot</child>
+      <axis>
+        <xyz>-0.047968 0 -0.998849</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_foot'>
+      <pose relative_to='left_ankle_pitch'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.027041 -0.034311 0.000833 0 -0 0</pose>
+        <mass>2.6907</mass>
+        <inertia>
+          <ixx>0.0080929</ixx>
+          <ixy>0.00024558</ixy>
+          <ixz>-5.8611e-05</ixz>
+          <iyy>0.0012877</iyy>
+          <iyz>0.0001125</iyz>
+          <izz>0.0070808</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_foot_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_foot.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_foot_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/left_foot.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='hip_2_right_upper_thigh' type='revolute'>
+      <pose relative_to='base_footprint'>0.0775 0 1.3 -3.14159 0 0</pose>
+      <parent>base_footprint</parent>
+      <child>right_upper_thigh</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_upper_thigh'>
+      <pose relative_to='hip_2_right_upper_thigh'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>1.6968</mass>
+        <inertia>
+          <ixx>0.00227023</ixx>
+          <ixy>-2.54431e-06</ixy>
+          <ixz>-6.64623e-06</ixz>
+          <iyy>0.00267462</iyy>
+          <iyz>-4.6965e-08</iyz>
+          <izz>0.00123801</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_upper_thigh_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_upper_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_upper_thigh_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_upper_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_thigh_roll' type='revolute'>
+      <pose relative_to='right_upper_thigh'>0 0 0.145124 1.5708 -0 0</pose>
+      <parent>right_upper_thigh</parent>
+      <child>right_middle_thigh</child>
+      <axis>
+        <xyz>-0.011124 0 -0.999938</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_middle_thigh'>
+      <pose relative_to='right_thigh_roll'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.07195 -0.006115 -0.001326 0 -0 0</pose>
+        <mass>1.18838</mass>
+        <inertia>
+          <ixx>0.000982216</ixx>
+          <ixy>9.78568e-08</ixy>
+          <ixz>-6.60737e-07</ixz>
+          <iyy>0.000970453</iyy>
+          <iyz>-9.85088e-08</iyz>
+          <izz>0.00092366</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_middle_thigh_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_middle_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_middle_thigh_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_middle_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_thigh_pitch' type='revolute'>
+      <pose relative_to='right_middle_thigh'>0 0 0 -1.58192 0 -1.5708</pose>
+      <parent>right_middle_thigh</parent>
+      <child>right_lower_thigh</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_lower_thigh'>
+      <pose relative_to='right_thigh_pitch'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.267528 5e-05 0.053132 0 -0 0</pose>
+        <mass>4.25436</mass>
+        <inertia>
+          <ixx>0.00345009</ixx>
+          <ixy>2.75609e-09</ixy>
+          <ixz>-0.00197968</ixz>
+          <iyy>0.0100351</iyy>
+          <iyz>-2.52633e-10</iyz>
+          <izz>0.0100902</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_lower_thigh_collision'>
+        <pose>-0.25 0 0.07 0 1.2 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.5</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='right_lower_thigh_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_lower_thigh.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_knee' type='revolute'>
+      <pose relative_to='right_lower_thigh'>-0.512778 5e-05 1.7e-05 0 -0 0</pose>
+      <parent>right_lower_thigh</parent>
+      <child>right_shin</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_shin'>
+      <pose relative_to='right_knee'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.114651 -0.02006 -0.000819 0 -0 0</pose>
+        <mass>1.60581</mass>
+        <inertia>
+          <ixx>0.00116466</ixx>
+          <ixy>-5.06243e-06</ixy>
+          <ixz>-6.44737e-10</ixz>
+          <iyy>0.00754379</iyy>
+          <iyz>-2.59218e-11</iyz>
+          <izz>0.00773513</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_shin_collision'>
+        <pose>-0.2125 -0.0115 0 0 1.5708 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.43</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='right_shin_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_shin.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_ankle_roll' type='revolute'>
+      <pose relative_to='right_shin'>-0.425 -0.0345 0 1.5708 -0 0</pose>
+      <parent>right_shin</parent>
+      <child>right_ankle_roll_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_ankle_roll_link'>
+      <pose relative_to='right_ankle_roll'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-1.2e-05 1e-06 0.000278 0 -0 0</pose>
+        <mass>0.0816413</mass>
+        <inertia>
+          <ixx>2.09932e-05</ixx>
+          <ixy>-5.12265e-07</ixy>
+          <ixz>-2.80748e-10</ixz>
+          <iyy>1.03508e-05</iyy>
+          <iyz>4.07293e-12</iyz>
+          <izz>2.23948e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_ankle_roll_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_ankle_roll_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_ankle_roll_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_ankle_roll_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_ankle_pitch' type='revolute'>
+      <pose relative_to='right_ankle_roll_link'>0 0 0 -1.5708 0 0</pose>
+      <parent>right_ankle_roll_link</parent>
+      <child>right_foot</child>
+      <axis>
+        <xyz>-0.047968 0 -0.998849</xyz>
+        <limit>
+          <lower>-3.14159</lower>
+          <upper>3.14159</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_foot'>
+      <pose relative_to='right_ankle_pitch'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.027041 -0.034311 0.000833 0 -0 0</pose>
+        <mass>2.6907</mass>
+        <inertia>
+          <ixx>0.0080929</ixx>
+          <ixy>0.00024558</ixy>
+          <ixz>-5.8611e-05</ixz>
+          <iyy>0.0012877</iyy>
+          <iyz>0.0001125</iyz>
+          <izz>0.0070808</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_foot_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_foot.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_foot_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://huron_description_2/meshes/right_foot.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
