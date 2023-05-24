@@ -114,8 +114,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="l_hip_roll_link">
@@ -175,8 +175,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="l_hip_pitch_link">
@@ -236,8 +236,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="l_knee_pitch_link">
@@ -297,8 +297,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="l_ankle_pitch_link">
@@ -358,8 +358,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="l_ankle_roll_link">
@@ -419,8 +419,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="r_hip_yaw_link">
@@ -480,8 +480,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="r_hip_roll_link">
@@ -541,8 +541,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="r_hip_pitch_link">
@@ -602,8 +602,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="r_knee_pitch_link">
@@ -663,8 +663,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="r_ankle_pitch_link">
@@ -724,8 +724,8 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
   <link
     name="r_ankle_roll_link">
@@ -785,7 +785,7 @@
       effort="0"
       velocity="0" />
     <dynamics
-      damping="0.1"
-      friction="0" />
+      damping="0.5"
+      friction="100" />
   </joint>
 </robot>
