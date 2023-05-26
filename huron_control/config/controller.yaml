@@ -1,0 +1,69 @@
+huron:
+   # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 100
+
+  # Effort Controllers ---------------------------------------
+  # Left Leg -----
+  l_hip_yaw_effort:
+    type: effort_controllers/JointEffortController
+    joint: l_hip_yaw_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  l_hip_roll_effort:
+    type: effort_controllers/JointEffortController
+    joint: l_hip_roll_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  l_hip_pitch_effort:
+    type: effort_controllers/JointEffortController
+    joint: l_hip_pitch_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  l_knee_pitch_effort:
+    type: effort_controllers/JointEffortController
+    joint: l_knee_pitch_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  l_ankle_pitch_effort:
+    type: effort_controllers/JointEffortController
+    joint: l_ankle_pitch_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  l_ankle_roll_effort:
+    type: effort_controllers/JointEffortController
+    joint: l_ankle_roll_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  # Right Leg -----
+
+  r_hip_yaw_effort:
+    type: effort_controllers/JointEffortController
+    joint: r_hip_yaw_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  r_hip_roll_effort:
+    type: effort_controllers/JointEffortController
+    joint: r_hip_roll_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  r_hip_pitch_effort:
+    type: effort_controllers/JointEffortController
+    joint: r_hip_pitch_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  r_knee_pitch_effort:
+    type: effort_controllers/JointEffortController
+    joint: r_knee_pitch_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  r_ankle_pitch_effort:
+    type: effort_controllers/JointEffortController
+    joint: r_ankle_pitch_joint
+    pid: {p: 200.0, i: 2, d: 1}
+
+  r_ankle_roll_effort:
+    type: effort_controllers/JointEffortController
+    joint: r_ankle_roll_joint
+    pid: {p: 200.0, i: 2, d: 1}

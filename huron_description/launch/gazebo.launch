@@ -16,11 +16,11 @@
     args="-urdf -model huron_description -z 1.125595 -param robot_description"
     output="screen" />
 
-  <node
+ <!-- <node
     name="fake_joint_calibration"
     pkg="rostopic"
     type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" />
+    args="pub /calibrated std_msgs/Bool true" /> -->
 
   <!-- <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" output="screen" respawn = "false" -->
   <!--   args="-p foot_ft"/> -->

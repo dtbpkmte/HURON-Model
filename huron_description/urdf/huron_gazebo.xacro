@@ -36,6 +36,7 @@
             <pose>0 0 0 0 0 0</pose>
         </sensor>
     </gazebo>
+
   
     
     <gazebo reference ="r1_ft_fixed">
@@ -143,6 +144,7 @@
         <gaussianNoise>0.0</gaussianNoise>
     </plugin>
     </gazebo> 
+
     
     <!-- World -->
     <gazebo reference="world"></gazebo>
@@ -202,6 +204,7 @@
         <material>Gazebo/Blue</material>
     </gazebo>
     
+
     
     <gazebo reference="l1_foot_ft_link">
         <kp>100000.0</kp>
@@ -250,6 +253,7 @@
         <minDepth>0.0001</minDepth>
         <material>Gazebo/Black</material>
     </gazebo>     
+
     
     <!-- Right Leg -->
     <gazebo reference="r_hip_yaw_link">
@@ -293,6 +297,7 @@
         <minDepth>0.0001</minDepth>
         <material>Gazebo/Blue</material>
     </gazebo>   
+
 
     <gazebo reference="r1_foot_ft_link">
         <kp>100000.0</kp>
@@ -341,4 +346,5 @@
         <minDepth>0.0001</minDepth>
         <material>Gazebo/Black</material>
     </gazebo> 
+
 </robot>
