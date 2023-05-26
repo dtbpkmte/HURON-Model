@@ -215,10 +215,11 @@
         </link>
         
         <!-- Right foot sensors -->
-        <?comment
         <!-- right ft fixed joint 1 -->
         <joint name="r1_ft_fixed" type="revolute">
-            <origin xyz="0.045 0.006 0.09" rpy="0 0  1.57"/>
+            <origin
+              xyz="0.098271 0.014348 0.12788"
+              rpy="-0.0095317 0.011124 1.5707" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r1_foot_ft_link"/>
@@ -244,7 +245,9 @@
 
         <!-- right ft fixed joint 2 -->
         <joint name="r2_ft_fixed" type="revolute">
-            <origin xyz="0.045  -0.006  0.09" rpy="0 0  1.57"/>
+            <origin
+              xyz="0.098334 -0.020652 0.12788"
+              rpy="-0.0095317 0.011124 1.5707" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r2_foot_ft_link"/>
@@ -271,7 +274,9 @@
 
         <!-- right ft fixed joint 3 -->
         <joint name="r3_ft_fixed" type="revolute">
-            <origin xyz="0.045  -0.008  -0.09" rpy="0 0  1.57"/>
+            <origin
+              xyz="0.098328 -0.01683 0"
+              rpy="-0.0095317 0.011124 1.5707" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r3_foot_ft_link"/>
@@ -298,7 +303,9 @@
 
         <!-- right ft fixed joint 4 -->
         <joint name="r4_ft_fixed" type="revolute">
-            <origin xyz="0.045  0.008  -0.09" rpy="0 0  1.57"/>
+            <origin
+              xyz="0.098267 0.016679 0"
+              rpy="-0.0095317 0.011124 1.5707" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r4_foot_ft_link"/>
@@ -321,7 +328,7 @@
 	    </inertial>
         </link>
 
-                <!-- right ft fixed joint -->
+        <!-- right ft fixed joint -->
         <joint name="rv_ft_fixed" type="fixed">
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
             <axis xyz="0 0 0"/>
@@ -336,6 +343,7 @@
         <!-- right foot ft link -->
         
         <link name="r_foot_v_ft_link"></link>
-      ?>
+
     </xacro:macro>
+
 </robot>
