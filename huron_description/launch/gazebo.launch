@@ -16,10 +16,10 @@
     args="-urdf -model huron_description -z 1.2 -param robot_description"
     output="screen" />
 
-  <node
+ <!-- <node
     name="fake_joint_calibration"
     pkg="rostopic"
     type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" />
+    args="pub /calibrated std_msgs/Bool true" /> -->
 
 </launch>
