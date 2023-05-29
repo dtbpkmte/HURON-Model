@@ -208,6 +208,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -220,6 +228,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -232,6 +248,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -244,6 +268,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -299,6 +331,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -311,6 +351,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -323,6 +371,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 
@@ -335,6 +391,14 @@
         <kd>100.0</kd>
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
+        <surface>
+          <contact>
+              <ode>
+                <kp>1e15</kp>
+                <kd>1e13</kd>
+              </ode>
+            </contact>
+        </surface>
         <!--<maxContacts>30</maxContacts>-->
         <fdir1>1 1 0</fdir1>
          <maxVel>1.0</maxVel> 

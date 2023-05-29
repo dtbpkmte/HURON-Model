@@ -5,7 +5,7 @@
     <xacro:macro name="huron_left_leg" params="parent dxl_effort dxl_speed">
         <!-- left hip yaw joint -->
         <joint name="l_hip_yaw_joint" type="revolute">
-          <origin xyz="-0.0775 0 -0.14512" rpy="0 0 -0.0062919" />
+          <origin xyz="-0.0775 0 -0.14512" rpy="0 0 -0.0" />
           <parent link="${parent}" />
           <child link="l_hip_yaw_link" />
           <axis xyz="0 0 1" />
@@ -16,7 +16,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="100" />
+            friction="5" />
         </joint>
         <xacro:insert_transmission name="l_hip_yaw_joint"/>
         <!-- left hip yaw link -->
@@ -37,7 +37,7 @@
           type="revolute">
           <origin
             xyz="0 0 0"
-            rpy="1.5708 0 3.1416" />
+            rpy="${pi/2} 0 ${pi}" />
           <parent
             link="l_hip_yaw_link" />
           <child
@@ -51,7 +51,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="100" />
+            friction="5" />
         </joint>
         <xacro:insert_transmission name="l_hip_roll_joint"/>
         <!-- left hip roll link -->
@@ -72,7 +72,7 @@
           type="revolute">
           <origin
             xyz="0 0 0"
-            rpy="-1.5707963267949 0 -1.5707963267949" />
+            rpy="${-pi/2} 0 ${-pi/2}" />
           <parent
             link="l_hip_roll_link" />
           <child
@@ -86,7 +86,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="100" />
+            friction="5" />
         </joint>
         <xacro:insert_transmission name="l_hip_pitch_joint"/>
         <!-- left hip pitch link -->
@@ -106,7 +106,7 @@
           name="l_knee_pitch_joint"
           type="revolute">
           <origin
-            xyz="0.511278478308803 4.99999997527478E-05 1.66647320021251E-05"
+            xyz="0.512778478308813 4.99999997527478E-05 1.66647320021251E-05"
             rpy="0 0 0" />
           <parent
             link="l_hip_pitch_link" />
@@ -121,7 +121,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="100" />
+            friction="5" />
         </joint>
         <xacro:insert_transmission name="l_knee_pitch_joint"/>
         <!-- left knee pitch link -->
@@ -142,7 +142,7 @@
           type="revolute">
           <origin
             xyz="0.370000000000016 3.16358752296964E-05 0.00249999999999911"
-            rpy="0 0 0.0249371730038869" />
+            rpy="0 0 0.0" />
           <parent
             link="l_knee_pitch_link" />
           <child
@@ -156,7 +156,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="100" />
+            friction="0.9" />
         </joint>
         <xacro:insert_transmission name="l_ankle_pitch_joint"/>
         <!-- left ankle pitch link -->
@@ -177,7 +177,7 @@
           type="revolute">
           <origin
             xyz="0 0 0"
-            rpy="1.57079632679489 0 0" />
+            rpy="${pi/2} 0 0" />
           <parent
             link="l_ankle_pitch_link" />
           <child
@@ -191,7 +191,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="100" />
+            friction="0.9" />
         </joint>
         <xacro:insert_transmission name="l_ankle_roll_joint"/>
         <!-- left ankle roll link -->
@@ -206,11 +206,12 @@
                 <xacro:insert_inertia_l_ankle_roll_link />
             </inertial>
         </link>
+
         <!-- left ft fixed joint 1 -->
         <joint name="l1_ft_fixed" type="revolute">
             <origin
-              xyz="0.098328 0.020682 0.12788"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.096 0.020682 0.13788"
+              rpy="-0.0 0.0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l1_foot_ft_link"/>
@@ -237,8 +238,8 @@
         <!-- left ft fixed joint 2 -->
         <joint name="l2_ft_fixed" type="revolute">
             <origin
-              xyz="0.098275 -0.014318 0.12788"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.096 -0.014318 0.13788"
+              rpy="-0.0 0.0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l2_foot_ft_link"/>
@@ -266,8 +267,8 @@
         <!-- left ft fixed joint 3 -->
         <joint name="l3_ft_fixed" type="revolute">
             <origin
-              xyz="0.098272 -0.016649 0"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.096 -0.016649 -0.026"
+              rpy="-0.0 0.0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l3_foot_ft_link"/>
@@ -295,8 +296,8 @@
         <!-- left ft fixed joint 4 -->
         <joint name="l4_ft_fixed" type="revolute">
             <origin
-              xyz="0.098322 0.01686 0"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.096 0.01686 -0.026"
+              rpy="-0.0 0.0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l4_foot_ft_link"/>
