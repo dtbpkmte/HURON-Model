@@ -109,7 +109,6 @@
     </xacro:macro>
     
     <!-- Left foot sensors -->
-
     <!-- l1_foot_ft link -->
     <xacro:macro name="insert_inertia_l1_foot_ft_link">
       <origin
@@ -173,7 +172,6 @@
         iyz="5.9744E-09"
         izz="3.4276E-07" />
     </xacro:macro>  
-        
     
     <!-- Right leg -->
 

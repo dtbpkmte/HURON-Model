@@ -62,7 +62,6 @@
         </material>
     </xacro:macro>
     
-    
     <!-- l1_foot_ft link -->
     <xacro:macro name="insert_mesh_l1_foot_ft_link">
         <origin xyz="0 0 0" rpy=" 0 0 0" />
@@ -101,7 +100,6 @@
         </geometry>
         <material name="grey"/>
     </xacro:macro> 
-           
 
     <!-- right hip yaw link -->
     <xacro:macro name="insert_mesh_r_hip_yaw_link">
@@ -195,5 +193,4 @@
         </geometry>
         <material name="grey"/>
     </xacro:macro> 
-
 </robot>

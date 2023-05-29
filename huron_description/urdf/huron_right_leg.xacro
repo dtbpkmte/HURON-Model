@@ -213,7 +213,6 @@
                 <xacro:insert_inertia_r_ankle_roll_link />
             </inertial>
         </link>
-        
         <!-- Right foot sensors -->
         <!-- right ft fixed joint 1 -->
         <joint name="r1_ft_fixed" type="revolute">
@@ -345,5 +344,4 @@
         <link name="r_foot_v_ft_link"></link>
 
     </xacro:macro>
-
 </robot>

@@ -206,7 +206,6 @@
                 <xacro:insert_inertia_l_ankle_roll_link />
             </inertial>
         </link>
-        
         <!-- left ft fixed joint 1 -->
         <joint name="l1_ft_fixed" type="revolute">
             <origin
@@ -331,5 +330,4 @@
         <link name="l_foot_v_ft_link"></link>
 
     </xacro:macro>
-
 </robot>
