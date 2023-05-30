@@ -36,6 +36,24 @@
         </inertial>
     </link>
 
+    <!-- Battery -->
+    <link name="battery_link">
+        <visual>
+            <xacro:insert_mesh_battery_link />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_battery_link />
+        </collision>
+        <inertial>
+            <xacro:insert_inertia_battery_link />
+        </inertial>
+    </link>
+    <joint name="battery_fixed" type="fixed">
+        <origin xyz="0 0 0.0895" rpy="0 0 0"/>
+        <parent link="base_footprint"/>
+        <child link="battery_link"/>
+    </joint>
+
     <!-- imu joint -->
     <joint name="imu_fixed" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0"/>

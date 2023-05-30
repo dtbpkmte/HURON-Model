@@ -9,6 +9,16 @@
         </geometry>
         <material name="grey"/>
     </xacro:macro>
+
+    <!-- Battery -->
+    <xacro:macro name="insert_mesh_battery_link">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.065 0.188 0.151" />
+        </geometry>
+        <material name="blue"/>
+    </xacro:macro>
+
     <!-- left hip yaw link -->
     <xacro:macro name="insert_mesh_l_hip_yaw_link">
         <origin xyz="0 0 0" rpy="0 0 0" />

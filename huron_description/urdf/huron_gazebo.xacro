@@ -159,6 +159,11 @@
         <material>Gazebo/Grey</material>
         <selfCollide>true</selfCollide>
     </gazebo>
+    <!-- Battery -->
+    <gazebo reference="battery_link">
+        <material>Gazebo/Cyan</material>
+        <selfCollide>true</selfCollide>
+    </gazebo>
     <!-- Left Leg -->
     <gazebo reference="l_hip_yaw_link">
         <mu1>0.2</mu1>

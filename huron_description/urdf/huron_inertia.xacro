@@ -16,6 +16,22 @@
         iyz="6.926E-09"
         izz="0.012315" />
     </xacro:macro>
+
+    <!-- Battery link -->
+    <xacro:macro name="insert_inertia_battery_link">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="3.90089" />
+      <inertia
+        ixx="0.01890143742"
+        ixy="0"
+        ixz="0"
+        iyy="0.0128628597"
+        iyz="0"
+        izz="0.008785454428" />
+    </xacro:macro>
     
     <!-- left hip yaw link -->
     <xacro:macro name="insert_inertia_l_hip_yaw_link">

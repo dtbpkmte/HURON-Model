@@ -28,6 +28,8 @@
   <material name="white">
     <color rgba="1.0 1.0 1.0 1.0"/>
   </material>
+  <!-- Right foot sensors -->
+  <!-- Left foot sensors -->
   <!-- Right leg -->
   <!-- Right foot sensors -->
   <!-- ros_control plugin -->
@@ -167,6 +169,11 @@
     <material>Gazebo/Grey</material>
     <selfCollide>true</selfCollide>
   </gazebo>
+  <!-- Battery -->
+  <gazebo reference="battery_link">
+    <material>Gazebo/Cyan</material>
+    <selfCollide>true</selfCollide>
+  </gazebo>
   <!-- Left Leg -->
   <gazebo reference="l_hip_yaw_link">
     <mu1>0.2</mu1>
@@ -208,50 +215,6 @@
     <maxVel>1.0</maxVel>
     <minDepth>0.001</minDepth>
     <material>Gazebo/Blue</material>
-  </gazebo>
-  <gazebo reference="l1_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="l2_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="l3_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="l4_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
   </gazebo>
   <!-- Right Leg -->
   <gazebo reference="r_hip_yaw_link">
@@ -295,50 +258,6 @@
     <minDepth>0.0001</minDepth>
     <material>Gazebo/Blue</material>
   </gazebo>
-  <gazebo reference="r1_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="r2_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="r3_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo reference="r4_foot_ft_link">
-    <kp>100000.0</kp>
-    <kd>100.0</kd>
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
-  </gazebo>
   <!-- Used for fixing robot -->
   <!--<link name="world"></link> 
     <joint name="world_fixed" type="fixed">
@@ -374,6 +293,33 @@
       <inertia ixx="0.00319" ixy="7.149E-11" ixz="6.0313E-11" iyy="0.010531" iyz="6.926E-09" izz="0.012315"/>
     </inertial>
   </link>
+  <!-- Battery -->
+  <link name="battery_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.188 0.151"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.065 0.188 0.151"/>
+      </geometry>
+      <material name="blue"/>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="3.90089"/>
+      <inertia ixx="0.01890143742" ixy="0" ixz="0" iyy="0.0128628597" iyz="0" izz="0.008785454428"/>
+    </inertial>
+  </link>
+  <joint name="battery_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0895"/>
+    <parent link="base_footprint"/>
+    <child link="battery_link"/>
+  </joint>
   <!-- imu joint -->
   <joint name="imu_fixed" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -383,12 +329,12 @@
   <link name="imu_link"/>
   <!-- right hip yaw joint -->
   <joint name="r_hip_yaw_joint" type="revolute">
-    <origin rpy="0 0 3.13046853298182" xyz="0.0774999999999944 0 -0.1451242"/>
+    <origin rpy="0 0 3.141592654" xyz="0.0774999999999944 0 -0.1451242"/>
     <parent link="base_footprint"/>
     <child link="r_hip_yaw_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="r_hip_yaw_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -424,12 +370,12 @@
   </link>
   <!-- right hip roll joint-->
   <joint name="r_hip_roll_joint" type="revolute">
-    <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
     <parent link="r_hip_yaw_link"/>
     <child link="r_hip_roll_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="r_hip_roll_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -465,12 +411,12 @@
   </link>
   <!-- right hip pitch joint -->
   <joint name="r_hip_pitch_joint" type="revolute">
-    <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+    <origin rpy="-1.570796327 0 -1.570796327" xyz="0 0 0"/>
     <parent link="r_hip_roll_link"/>
     <child link="r_hip_pitch_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="r_hip_pitch_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -511,7 +457,7 @@
     <child link="r_knee_pitch_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="r_knee_pitch_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -547,12 +493,12 @@
   </link>
   <!-- right ankle pitch joint -->
   <joint name="r_ankle_pitch_joint" type="revolute">
-    <origin rpy="0 0 0.0095311367408488" xyz="0.370000000000006 -3.16358749707368E-05 -0.00249999999999918"/>
+    <origin rpy="0 0 0.0" xyz="0.370000000000006 -3.16358749707368E-05 -0.00249999999999918"/>
     <parent link="r_knee_pitch_link"/>
     <child link="r_ankle_pitch_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="0.9"/>
   </joint>
   <transmission name="r_ankle_pitch_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -592,12 +538,12 @@
   </link>
   <!-- right ankle roll joint -->
   <joint name="r_ankle_roll_joint" type="revolute">
-    <origin rpy="1.57079632679489 0 0" xyz="0 0 0"/>
+    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
     <parent link="r_ankle_pitch_link"/>
     <child link="r_ankle_roll_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="0.9"/>
   </joint>
   <transmission name="r_ankle_roll_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -631,149 +577,18 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0.073422 7.2094E-05 0.063933"/>
-      <mass value="1.8531"/>
+      <mass value="1.8533"/>
       <inertia ixx="0.0086813" ixy="1.0356E-05" ixz="0.00024346" iyy="0.0084051" iyz="-0.00012301" izz="0.0013018"/>
     </inertial>
   </link>
-  <!-- Right foot sensors -->
-  <!-- right ft fixed joint 1 -->
-  <joint name="r1_ft_fixed" type="revolute">
-    <origin rpy="-0.0095317 0.011124 1.5707" xyz="0.096 0.014348 0.13788"/>
-    <axis xyz="0 0 1"/>
-    <parent link="r_ankle_roll_link"/>
-    <child link="r1_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- right foot ft link 1 -->
-  <link name="r1_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="-9.3029E-06 0.0048381 4.6013E-05"/>
-      <mass value="0.0086322"/>
-      <inertia ixx="3.8994E-07" ixy="-3.7469E-10" ixz="5.2298E-10" iyy="5.8219E-07" iyz="2.2796E-09" izz="3.4263E-07"/>
-    </inertial>
-  </link>
-  <!-- right ft fixed joint 2 -->
-  <joint name="r2_ft_fixed" type="revolute">
-    <origin rpy="-0.0095317 0.011124 1.5707" xyz="0.096 -0.020652 0.13788"/>
-    <axis xyz="0 0 1"/>
-    <parent link="r_ankle_roll_link"/>
-    <child link="r2_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- right foot ft link 2 -->
-  <link name="r2_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="-9.3029E-06 0.0048381 4.6013E-05"/>
-      <mass value="0.0086322"/>
-      <inertia ixx="3.8994E-07" ixy="-3.7469E-10" ixz="5.2298E-10" iyy="5.8219E-07" iyz="2.2796E-09" izz="3.4263E-07"/>
-    </inertial>
-  </link>
-  <!-- right ft fixed joint 3 -->
-  <joint name="r3_ft_fixed" type="revolute">
-    <origin rpy="-0.0095317 0.011124 1.5707" xyz="0.096 -0.01683 -0.026"/>
-    <axis xyz="0 0 1"/>
-    <parent link="r_ankle_roll_link"/>
-    <child link="r3_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- right foot ft link 3 -->
-  <link name="r3_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="-9.3029E-06 0.0048381 4.6013E-05"/>
-      <mass value="0.0086322"/>
-      <inertia ixx="3.8994E-07" ixy="-3.7469E-10" ixz="5.2298E-10" iyy="5.8219E-07" iyz="2.2796E-09" izz="3.4263E-07"/>
-    </inertial>
-  </link>
-  <!-- right ft fixed joint 4 -->
-  <joint name="r4_ft_fixed" type="revolute">
-    <origin rpy="-0.0095317 0.011124 1.5707" xyz="0.096 0.016679 -0.026"/>
-    <axis xyz="0 0 1"/>
-    <parent link="r_ankle_roll_link"/>
-    <child link="r4_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- right4 foot ft link 4 -->
-  <link name="r4_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="-9.3029E-06 0.0048381 4.6013E-05"/>
-      <mass value="0.0086322"/>
-      <inertia ixx="3.8994E-07" ixy="-3.7469E-10" ixz="5.2298E-10" iyy="5.8219E-07" iyz="2.2796E-09" izz="3.4263E-07"/>
-    </inertial>
-  </link>
-  <!-- right ft fixed joint -->
-  <joint name="rv_ft_fixed" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-    <axis xyz="0 0 0"/>
-    <parent link="r4_foot_ft_link"/>
-    <child link="r_foot_v_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- right foot ft link -->
-  <link name="r_foot_v_ft_link"/>
   <!-- left hip yaw joint -->
   <joint name="l_hip_yaw_joint" type="revolute">
-    <origin rpy="0 0 -0.0062919" xyz="-0.0775 0 -0.14512"/>
+    <origin rpy="0 0 -0.0" xyz="-0.0775 0 -0.14512"/>
     <parent link="base_footprint"/>
     <child link="l_hip_yaw_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="l_hip_yaw_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -809,12 +624,12 @@
   </link>
   <!-- left hip roll joint-->
   <joint name="l_hip_roll_joint" type="revolute">
-    <origin rpy="1.5708 0 3.1416" xyz="0 0 0"/>
+    <origin rpy="1.570796327 0 3.141592654" xyz="0 0 0"/>
     <parent link="l_hip_yaw_link"/>
     <child link="l_hip_roll_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="l_hip_roll_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -850,12 +665,12 @@
   </link>
   <!-- left hip pitch joint -->
   <joint name="l_hip_pitch_joint" type="revolute">
-    <origin rpy="-1.5707963267949 0 -1.5707963267949" xyz="0 0 0"/>
+    <origin rpy="-1.570796327 0 -1.570796327" xyz="0 0 0"/>
     <parent link="l_hip_roll_link"/>
     <child link="l_hip_pitch_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="l_hip_pitch_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -891,12 +706,12 @@
   </link>
   <!-- left knee pitch joint -->
   <joint name="l_knee_pitch_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0.511278478308803 4.99999997527478E-05 1.66647320021251E-05"/>
+    <origin rpy="0 0 0" xyz="0.512778478308813 4.99999997527478E-05 1.66647320021251E-05"/>
     <parent link="l_hip_pitch_link"/>
     <child link="l_knee_pitch_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="5"/>
   </joint>
   <transmission name="l_knee_pitch_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -932,12 +747,12 @@
   </link>
   <!-- left ankle pitch joint -->
   <joint name="l_ankle_pitch_joint" type="revolute">
-    <origin rpy="0 0 0.0249371730038869" xyz="0.370000000000016 3.16358752296964E-05 0.00249999999999911"/>
+    <origin rpy="0 0 0.0" xyz="0.370000000000016 3.16358752296964E-05 0.00249999999999911"/>
     <parent link="l_knee_pitch_link"/>
     <child link="l_ankle_pitch_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="0.9"/>
   </joint>
   <transmission name="l_ankle_pitch_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -977,12 +792,12 @@
   </link>
   <!-- left ankle roll pitch -->
   <joint name="l_ankle_roll_joint" type="revolute">
-    <origin rpy="1.57079632679489 0 0" xyz="0 0 0"/>
+    <origin rpy="1.570796327 0 0" xyz="0 0 0"/>
     <parent link="l_ankle_pitch_link"/>
     <child link="l_ankle_roll_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000" lower="-3.1416" upper="3.1416" velocity="3"/>
-    <dynamics damping="0.5" friction="100"/>
+    <dynamics damping="0.5" friction="0.9"/>
   </joint>
   <transmission name="l_ankle_roll_joint_tran">
     <type>transmission_interface/SimpleTransmission</type>
@@ -1020,133 +835,5 @@
       <inertia ixx="0.008682" ixy="-1.0255E-05" ixz="0.00024351" iyy="0.0084057" iyz="0.00012332" izz="0.0013019"/>
     </inertial>
   </link>
-  <!-- left ft fixed joint 1 -->
-  <joint name="l1_ft_fixed" type="revolute">
-    <origin rpy="-0.024938 0.00629 1.5706" xyz="0.095 0.020682 0.13788"/>
-    <axis xyz="0 0 1"/>
-    <parent link="l_ankle_roll_link"/>
-    <child link="l1_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- left foot ft link 1 -->
-  <link name="l1_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="6.5681E-06 0.0048368 0.00012069"/>
-      <mass value="0.0086322"/>
-      <inertia ixx="3.8994E-07" ixy="2.5351E-10" ixz="3.0416E-10" iyy="5.8206E-07" iyz="5.9744E-09" izz="3.4276E-07"/>
-    </inertial>
-  </link>
-  <!-- left ft fixed joint 2 -->
-  <joint name="l2_ft_fixed" type="revolute">
-    <origin rpy="-0.024938 0.00629 1.5706" xyz="0.095 -0.014318 0.13788"/>
-    <axis xyz="0 0 1"/>
-    <parent link="l_ankle_roll_link"/>
-    <child link="l2_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- left foot ft link 2 -->
-  <link name="l2_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="6.56809560273253E-06 0.00483682139671537 0.000120685375128327"/>
-      <mass value="0.00863223621815319"/>
-      <inertia ixx="3.89940248965647E-07" ixy="2.53506346419819E-10" ixz="3.04161588773098E-10" iyy="5.82064646347941E-07" iyz="5.97441467814794E-09" izz="3.42755265424868E-07"/>
-    </inertial>
-  </link>
-  <!-- left ft fixed joint 3 -->
-  <joint name="l3_ft_fixed" type="revolute">
-    <origin rpy="-0.024938 0.00629 1.5706" xyz="0.095 -0.016649 -0.026"/>
-    <axis xyz="0 0 1"/>
-    <parent link="l_ankle_roll_link"/>
-    <child link="l3_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- left foot ft link 3 -->
-  <link name="l3_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="6.56809560273253E-06 0.00483682139671548 0.000120685375128382"/>
-      <mass value="0.00863223621815319"/>
-      <inertia ixx="3.89940248965648E-07" ixy="2.53506346419837E-10" ixz="3.04161588773088E-10" iyy="5.82064646347941E-07" iyz="5.97441467814795E-09" izz="3.42755265424868E-07"/>
-    </inertial>
-  </link>
-  <!-- left ft fixed joint 4 -->
-  <joint name="l4_ft_fixed" type="revolute">
-    <origin rpy="-0.024938 0.00629 1.5706" xyz="0.095 0.01686 -0.026"/>
-    <axis xyz="0 0 1"/>
-    <parent link="l_ankle_roll_link"/>
-    <child link="l4_foot_ft_link"/>
-    <limit effort="100" lower="0" upper="0" velocity="100"/>
-  </joint>
-  <!-- left foot ft link 4 -->
-  <link name="l4_foot_ft_link">
-    <visual>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <origin rpy=" 0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://huron_description/meshes/r_foot_ft.STL" scale="1 1 1"/>
-      </geometry>
-      <material name="grey"/>
-    </collision>
-    <inertial>
-      <origin rpy="0 0 0" xyz="6.5681E-06 0.0048368 0.00012069"/>
-      <mass value="0.0086322"/>
-      <inertia ixx="3.8994E-07" ixy="2.5351E-10" ixz="3.0416E-10" iyy="5.8206E-07" iyz="5.9744E-09" izz="3.4276E-07"/>
-    </inertial>
-  </link>
-  <!-- left ft fixed joint -->
-  <joint name="lv_ft_fixed" type="fixed">
-    <origin rpy="0 -1.570796327 0" xyz="0.045 0.0 0.0"/>
-    <parent link="l4_foot_ft_link"/>
-    <child link="l_foot_v_ft_link"/>
-  </joint>
-  <!-- left foot ft link -->
-  <link name="l_foot_v_ft_link"/>
 </robot>
 
