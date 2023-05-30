@@ -67,3 +67,21 @@ huron:
     type: effort_controllers/JointEffortController
     joint: r_ankle_roll_joint
     pid: {p: 200.0, i: 2, d: 1}
+      
+  # Effort Group Controller ---------------------------------------
+
+  joint_group_effort_controller:
+    type: effort_controllers/JointGroupEffortController
+    joints:
+      - l_hip_yaw_joint 
+      - l_hip_roll_joint
+      - l_hip_pitch_joint
+      - l_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - l_ankle_roll_joint
+      - r_hip_yaw_joint 
+      - r_hip_roll_joint
+      - r_hip_pitch_joint
+      - r_knee_pitch_joint
+      - r_ankle_pitch_joint
+      - r_ankle_roll_joint
