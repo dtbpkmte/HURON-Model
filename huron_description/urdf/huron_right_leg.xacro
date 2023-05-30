@@ -52,8 +52,8 @@
           <axis
             xyz="0 0 1" />
           <limit
-            lower="-3.1416"
-            upper="3.1416"
+            lower="-0.5236"
+            upper="0.01"
             effort="${dxl_effort}"
             velocity="${dxl_speed}" />
           <dynamics
@@ -87,8 +87,8 @@
           <axis
             xyz="0 0 1" />
           <limit
-            lower="-3.1416"
-            upper="3.1416"
+            lower="-1.2217"
+            upper="1.2217"
             effort="${dxl_effort}"
             velocity="${dxl_speed}" />
           <dynamics
@@ -122,8 +122,8 @@
           <axis
             xyz="0 0 1" />
           <limit
-            lower="-3.1416"
-            upper="3.1416"
+            lower="-${pi/2}"
+            upper="${pi/2}"
             effort="${dxl_effort}"
             velocity="${dxl_speed}" />
           <dynamics
@@ -157,13 +157,13 @@
           <axis
             xyz="0 0 1" />
           <limit
-            lower="-3.1416"
-            upper="3.1416"
+            lower="-0.5236"
+            upper="0.1745"
             effort="${dxl_effort}"
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="2.5" />
+            friction="2.0" />
         </joint>
         <xacro:insert_transmission name="r_ankle_pitch_joint"/>
         <!-- right ankle pitch link -->
@@ -192,13 +192,13 @@
           <axis
             xyz="0 0 1" />
           <limit
-            lower="-3.1416"
-            upper="3.1416"
+            lower="-0.3491"
+            upper="0.3491"
             effort="${dxl_effort}"
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="2.5" />
+            friction="2.0" />
         </joint>
         <xacro:insert_transmission name="r_ankle_roll_joint"/>
         <!-- right ankle roll link -->
