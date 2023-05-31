@@ -161,7 +161,7 @@
     </gazebo>
     <!-- Battery -->
     <gazebo reference="battery_link">
-        <material>Gazebo/Cyan</material>
+        <material>Gazebo/SkyBlue</material>
         <selfCollide>true</selfCollide>
     </gazebo>
     <!-- Left Leg -->
@@ -201,13 +201,59 @@
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <fdir1>1 1 0</fdir1>
+        <fdir1>1 0 0</fdir1>
         <maxVel>1.0</maxVel>
         <minDepth>0.001</minDepth>
         <material>Gazebo/Blue</material>
     </gazebo>
     
-
+    <gazebo reference="l1_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo>  
+    
+    <gazebo reference="l2_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo> 
+    
+    <gazebo reference="l3_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo> 
+    
+    <gazebo reference="l4_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo>
     
     <!-- Right Leg -->
     <gazebo reference="r_hip_yaw_link">
@@ -246,10 +292,58 @@
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <fdir1>1 1 0</fdir1>
+        <fdir1>1 0 0</fdir1>
          <maxVel>1.0</maxVel> 
         <minDepth>0.0001</minDepth>
         <material>Gazebo/Blue</material>
     </gazebo>   
+
+    <gazebo reference="r1_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo>  
+    
+    <gazebo reference="r2_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo> 
+    
+    <gazebo reference="r3_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo> 
+    
+    <gazebo reference="r4_foot_ft_link">
+        <kp>1e15</kp>
+        <kd>1e13</kd>
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <!--<maxContacts>30</maxContacts>-->
+        <fdir1>1 0 0</fdir1>
+         <maxVel>1.0</maxVel> 
+        <minDepth>0.0001</minDepth>
+        <material>Gazebo/Orange</material>
+    </gazebo> 
 
 </robot>

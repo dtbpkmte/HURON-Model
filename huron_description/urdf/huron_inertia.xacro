@@ -66,31 +66,31 @@
     <!-- left hip pitch link -->
     <xacro:macro name="insert_inertia_l_hip_pitch_link">
       <origin
-        xyz="0.26603 4.6212E-05 0.053152"
+        xyz="0.26752 4.6211E-05 0.053152"
         rpy="0 0 0" />
       <mass
         value="4.2544" />
       <inertia
         ixx="0.0034527"
-        ixy="-3.1046E-08"
+        ixy="-3.1056E-08"
         ixz="0.0019797"
         iyy="0.010032"
-        iyz="-1.4492E-10"
+        iyz="-1.4618E-10"
         izz="0.01009" />
     </xacro:macro>
     <!-- left knee link -->
     <xacro:macro name="insert_inertia_l_knee_pitch_link">
       <origin
-        xyz="0.13395 0.00068098 0.00486"
+        xyz="0.13547 0.00068516 0.00486"
         rpy="0 0 0" />
       <mass
         value="3.4875" />
       <inertia
-        ixx="0.0064808"
-        ixy="1.3685E-05"
-        ixz="-2.8221E-05"
-        iyy="0.019763"
-        iyz="1.0351E-05"
+        ixx="0.0064814"
+        ixy="1.2524E-05"
+        ixz="-2.7966E-05"
+        iyy="0.019762"
+        iyz="1.0417E-05"
         izz="0.017354" />
     </xacro:macro>
     <!-- left ankle pitch link -->
@@ -103,9 +103,9 @@
       <inertia
         ixx="0.0025143"
         ixy="-0.00025651"
-        ixz="1.1648E-12"
+        ixz="1.1633E-12"
         iyy="0.0045125"
-        iyz="6.7198E-10"
+        iyz="6.7196E-10"
         izz="0.0049235" />
     </xacro:macro>
     <!-- left ankle roll link -->
@@ -125,6 +125,69 @@
     </xacro:macro>
     
     <!-- Left foot sensors -->
+    <!-- l1_foot_ft link -->
+    <xacro:macro name="insert_inertia_l1_foot_ft_link">
+      <origin
+        xyz="7.3272E-06 0.0048383 4.6103E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.0086322" />
+      <inertia
+        ixx="3.8994E-07"
+        ixy="2.9118E-10"
+        ixz="2.9784E-10"
+        iyy="5.8221E-07"
+        iyz="1.8321E-12"
+        izz="3.4261E-07" />
+    </xacro:macro>
+       
+    <!-- l2_foot_ft link  -->
+    <xacro:macro name="insert_inertia_l2_foot_ft_link">
+      <origin
+        xyz="7.32716003928879E-06 0.00483832570565201 4.61026197218217E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00863223621815312" />
+      <inertia
+        ixx="3.89940334430996E-07"
+        ixy="2.91176476412897E-10"
+        ixz="2.9783895900032E-10"
+        iyy="5.82213619517231E-07"
+        iyz="1.83208753538184E-12"
+        izz="3.4260620679022E-07" />
+    </xacro:macro>
+    
+    <!-- l3_foot_ft link 3 -->
+    <xacro:macro name="insert_inertia_l3_foot_ft_link">
+      <origin
+        xyz="7.32716003956635E-06 0.00483832570565224 4.61026188336433E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00863223621815312" />
+      <inertia
+        ixx="3.89940334430996E-07"
+        ixy="2.9117647641293E-10"
+        ixz="2.97838959000262E-10"
+        iyy="5.82213619517231E-07"
+        iyz="1.83208753540344E-12"
+        izz="3.4260620679022E-07" />
+    </xacro:macro> 
+    
+    <!-- l4_foot_ft link 4 -->
+    <xacro:macro name="insert_inertia_l4_foot_ft_link">
+      <origin
+        xyz="7.32716003670753E-06 0.00483832570565246 4.61026209985782E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00863223621815312" />
+      <inertia
+        ixx="3.89940334430996E-07"
+        ixy="2.91176476412812E-10"
+        ixz="2.97838959000613E-10"
+        iyy="5.82213619517231E-07"
+        iyz="1.83208753537968E-12"
+        izz="3.42606206790219E-07" />
+    </xacro:macro>
     
     <!-- Right leg -->
 
@@ -167,10 +230,10 @@
         value="4.2544" />
       <inertia
         ixx="0.0034501"
-        ixy="-2.7561E-09"
+        ixy="-2.7593E-09"
         ixz="-0.0019797"
         iyy="0.010035"
-        iyz="2.5263E-10"
+        iyz="2.5351E-10"
         izz="0.01009" />
     </xacro:macro>
     <!-- right knee link -->
@@ -221,5 +284,67 @@
     
     <!-- Right foot sensors -->
 
+    <!-- r1_foot_ft link -->
+    <xacro:macro name="insert_inertia_r1_foot_ft_link">
+      <origin
+        xyz="-8.7899E-06 0.0048383 -9.7784E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.0086322" />
+      <inertia
+        ixx="3.8994E-07"
+        ixy="-3.4931E-10"
+        ixz="5.2655E-10"
+        iyy="5.8221E-07"
+        iyz="-3.8859E-12"
+        izz="3.4261E-07" />
+    </xacro:macro>
+       
+    <!-- r2_foot_ft link  -->
+    <xacro:macro name="insert_inertia_r2_foot_ft_link">
+      <origin
+        xyz="-8.78991381628169E-06 0.00483832326857458 -9.77840948768183E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00863223621815318" />
+      <inertia
+        ixx="3.89936544476746E-07"
+        ixy="-3.49305164752985E-10"
+        ixz="5.26550951245735E-10"
+        iyy="5.82213425821568E-07"
+        iyz="-3.88587306925662E-12"
+        izz="3.42610190440137E-07" />
+    </xacro:macro>
     
+    <!-- r_foot_ft link 3 -->
+    <xacro:macro name="insert_inertia_r3_foot_ft_link">
+      <origin
+        xyz="-8.78991381587924E-06 0.00483832326857436 -9.7784095154374E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00863223621815318" />
+      <inertia
+        ixx="3.89936544476746E-07"
+        ixy="-3.49305164752997E-10"
+        ixz="5.26550951245753E-10"
+        iyy="5.82213425821568E-07"
+        iyz="-3.88587306930208E-12"
+        izz="3.42610190440137E-07" />
+    </xacro:macro> 
+    
+    <!-- r_foot_ft link 4 -->
+    <xacro:macro name="insert_inertia_r4_foot_ft_link">
+      <origin
+        xyz="-8.78991381597638E-06 0.00483832326857403 -9.7784095154374E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00863223621815318" />
+      <inertia
+        ixx="3.89936544476746E-07"
+        ixy="-3.49305164753006E-10"
+        ixz="5.26550951245779E-10"
+        iyy="5.82213425821568E-07"
+        iyz="-3.88587306929652E-12"
+        izz="3.42610190440137E-07" />
+    </xacro:macro> 
 </robot>
