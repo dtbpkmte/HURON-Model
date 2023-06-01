@@ -203,4 +203,14 @@
         </geometry>
         <material name="grey"/>
     </xacro:macro>
+
+
+    <!-- Foot base -->
+    <xacro:macro name="insert_mesh_foot_base_link">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.078 0.005 0.231" />
+        </geometry>
+        <material name="green"/>
+    </xacro:macro>
 </robot>

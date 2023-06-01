@@ -347,4 +347,20 @@
         iyz="-3.88587306929652E-12"
         izz="3.42610190440137E-07" />
     </xacro:macro> 
+
+    <!-- Foot base link -->
+    <xacro:macro name="insert_inertia_foot_base_link">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="4.448833333E-05"
+        ixy="0"
+        ixz="0"
+        iyy="4.95375E-05"
+        iyz="0"
+        izz="5.090833333E-06" />
+    </xacro:macro>
 </robot>

@@ -16,7 +16,7 @@
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-urdf -model huron_description -z 1.125595 -param robot_description"
+    args="-urdf -model huron_description -z 1.1315 -param robot_description"
     output="screen" />
 
  <!-- <node

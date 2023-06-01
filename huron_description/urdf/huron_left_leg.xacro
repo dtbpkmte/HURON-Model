@@ -106,7 +106,7 @@
           name="l_knee_pitch_joint"
           type="revolute">
           <origin
-            xyz="0.511278478308821 5.00027201116859E-05 1.66647320003488E-05"
+            xyz="0.512778478308813 5.00027201116859E-05 1.66647320003488E-05"
             rpy="0 0 0" />
           <parent
             link="l_hip_pitch_link" />
@@ -210,8 +210,8 @@
         <!-- left ft fixed joint 1 -->
         <joint name="l1_ft_fixed" type="revolute">
             <origin
-              xyz="0.098328 0.020682 0.12788"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.0983282135717449 0.0206816111121677 0.127875866180865"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l1_foot_ft_link"/>
@@ -238,8 +238,8 @@
         <!-- left ft fixed joint 2 -->
         <joint name="l2_ft_fixed" type="revolute">
             <origin
-              xyz="0.098275 -0.014318 0.12788"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.0982752085863122 -0.0143183487516882 0.127875866180865"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l2_foot_ft_link"/>
@@ -267,8 +267,8 @@
         <!-- left ft fixed joint 3 -->
         <joint name="l3_ft_fixed" type="revolute">
             <origin
-              xyz="0.098272 -0.016649 0"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.0982716792139032 -0.0166488444898757 0"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l3_foot_ft_link"/>
@@ -296,8 +296,8 @@
         <!-- left ft fixed joint 4 -->
         <joint name="l4_ft_fixed" type="revolute">
             <origin
-              xyz="0.098322 0.01686 0"
-              rpy="-0.024938 0.00629 1.5706" />
+              xyz="0.0983224252792114 0.0168595176863209 0"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="l_ankle_roll_link"/>
             <child link="l4_foot_ft_link"/>
@@ -329,6 +329,25 @@
         </joint>
         <!-- left foot ft link -->
         <link name="l_foot_v_ft_link"></link>
+
+
+        <!-- Foot base -->
+        <link name="l_foot_base_link">
+	    <visual>
+		<xacro:insert_mesh_foot_base_link />
+	    </visual>
+            <collision>
+                <xacro:insert_mesh_foot_base_link />
+            </collision>	    
+	    <inertial>
+		<xacro:insert_inertia_foot_base_link />
+	    </inertial>
+        </link>
+        <joint name="l_foot_base_fixed" type="fixed">
+            <origin xyz="-0.0175 -0.0025 -0.06395" rpy="0 0 0"/>
+            <parent link="l1_foot_ft_link"/>
+            <child link="l_foot_base_link"/>
+        </joint>
 
     </xacro:macro>
 </robot>

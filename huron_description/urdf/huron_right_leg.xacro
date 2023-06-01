@@ -217,8 +217,8 @@
        <!-- right ft fixed joint 1 -->
         <joint name="r1_ft_fixed" type="revolute">
             <origin
-              xyz="0.098271 0.014348 0.12788"
-              rpy="-0.0095317 0.011124 1.5707" />
+              xyz="0.0982708740959065 0.0143480673989493 0.127875866180863"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r1_foot_ft_link"/>
@@ -245,8 +245,8 @@
         <!-- right ft fixed joint 2 -->
         <joint name="r2_ft_fixed" type="revolute">
             <origin
-              xyz="0.098334 -0.020652 0.12788"
-              rpy="-0.0095317 0.011124 1.5707" />
+              xyz="0.0983344633797905 -0.0206518748353312 0.127875866180863"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r2_foot_ft_link"/>
@@ -274,8 +274,8 @@
         <!-- right ft fixed joint 3 -->
         <joint name="r3_ft_fixed" type="revolute">
             <origin
-              xyz="0.098328 -0.01683 0"
-              rpy="-0.0095317 0.011124 1.5707" />
+              xyz="0.0983275192522874 -0.0168297833346846 0"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r3_foot_ft_link"/>
@@ -303,8 +303,8 @@
         <!-- right ft fixed joint 4 -->
         <joint name="r4_ft_fixed" type="revolute">
             <origin
-              xyz="0.098267 0.016679 0"
-              rpy="-0.0095317 0.011124 1.5707" />
+              xyz="0.0982666399609057 0.0166785619632585 0"
+              rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
             <child link="r4_foot_ft_link"/>
@@ -342,6 +342,24 @@
         <!-- right foot ft link -->
         
         <link name="r_foot_v_ft_link"></link>
+
+        <!-- Foot base -->
+        <link name="r_foot_base_link">
+	    <visual>
+		<xacro:insert_mesh_foot_base_link />
+	    </visual>
+            <collision>
+                <xacro:insert_mesh_foot_base_link />
+            </collision>	    
+	    <inertial>
+		<xacro:insert_inertia_foot_base_link />
+	    </inertial>
+        </link>
+        <joint name="r_foot_base_fixed" type="fixed">
+            <origin xyz="-0.0175 -0.0025 -0.06395" rpy="0 0 0"/>
+            <parent link="r1_foot_ft_link"/>
+            <child link="r_foot_base_link"/>
+        </joint>
 
     </xacro:macro>
 </robot>

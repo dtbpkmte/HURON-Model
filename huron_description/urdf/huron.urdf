@@ -209,7 +209,7 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <fdir1>1 0 0</fdir1>
     <maxVel>1.0</maxVel>
     <minDepth>0.001</minDepth>
     <material>Gazebo/Blue</material>
@@ -220,10 +220,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="l2_foot_ft_link">
     <kp>100000.0</kp>
@@ -231,10 +231,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="l3_foot_ft_link">
     <kp>100000.0</kp>
@@ -242,10 +242,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="l4_foot_ft_link">
     <kp>100000.0</kp>
@@ -253,10 +253,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <!-- Right Leg -->
   <gazebo reference="r_hip_yaw_link">
@@ -295,7 +295,7 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <fdir1>1 0 0</fdir1>
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
     <material>Gazebo/Blue</material>
@@ -306,10 +306,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="r2_foot_ft_link">
     <kp>100000.0</kp>
@@ -317,10 +317,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="r3_foot_ft_link">
     <kp>100000.0</kp>
@@ -328,10 +328,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <gazebo reference="r4_foot_ft_link">
     <kp>100000.0</kp>
@@ -339,10 +339,10 @@
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
     <!--<maxContacts>30</maxContacts>-->
-    <fdir1>1 1 0</fdir1>
+    <!-- <fdir1>1 0 0</fdir1> -->
     <maxVel>1.0</maxVel>
     <minDepth>0.0001</minDepth>
-    <material>Gazebo/Black</material>
+    <material>Gazebo/Orange</material>
   </gazebo>
   <!-- Used for fixing robot -->
   <!--<link name="world"></link> 
@@ -797,6 +797,33 @@
   </joint>
   <!-- right foot ft link -->
   <link name="r_foot_v_ft_link"/>
+  <!-- Foot base -->
+  <link name="r_foot_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.078 0.005 0.221"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.078 0.005 0.221"/>
+      </geometry>
+      <material name="green"/>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="2.162166667E-05" ixy="0" ixz="0" iyy="2.545416667E-05" iyz="0" izz="3.874166667E-06"/>
+    </inertial>
+  </link>
+  <joint name="r_foot_base_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0175 -0.0025 -0.06395"/>
+    <parent link="r1_foot_ft_link"/>
+    <child link="r_foot_base_link"/>
+  </joint>
   <!-- left hip yaw joint -->
   <joint name="l_hip_yaw_joint" type="revolute">
     <origin rpy="0 0 -0.0" xyz="-0.0775 0 -0.14512"/>
@@ -922,7 +949,7 @@
   </link>
   <!-- left knee pitch joint -->
   <joint name="l_knee_pitch_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0.511278478308821 5.00027201116859E-05 1.66647320003488E-05"/>
+    <origin rpy="0 0 0" xyz="0.512778478308813 5.00027201116859E-05 1.66647320003488E-05"/>
     <parent link="l_hip_pitch_link"/>
     <child link="l_knee_pitch_link"/>
     <axis xyz="0 0 1"/>
@@ -1179,5 +1206,32 @@
   </joint>
   <!-- left foot ft link -->
   <link name="l_foot_v_ft_link"/>
+  <!-- Foot base -->
+  <link name="l_foot_base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.078 0.005 0.221"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.078 0.005 0.221"/>
+      </geometry>
+      <material name="green"/>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="2.162166667E-05" ixy="0" ixz="0" iyy="2.545416667E-05" iyz="0" izz="3.874166667E-06"/>
+    </inertial>
+  </link>
+  <joint name="l_foot_base_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0175 -0.0025 -0.06395"/>
+    <parent link="l1_foot_ft_link"/>
+    <child link="l_foot_base_link"/>
+  </joint>
 </robot>
 
