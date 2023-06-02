@@ -331,23 +331,6 @@
         <link name="l_foot_v_ft_link"></link>
 
 
-        <!-- Foot base -->
-        <link name="l_foot_base_link">
-	    <visual>
-		<xacro:insert_mesh_foot_base_link />
-	    </visual>
-            <collision>
-                <xacro:insert_mesh_foot_base_link />
-            </collision>	    
-	    <inertial>
-		<xacro:insert_inertia_foot_base_link />
-	    </inertial>
-        </link>
-        <joint name="l_foot_base_fixed" type="fixed">
-            <origin xyz="-0.0175 -0.0025 -0.06395" rpy="0 0 0"/>
-            <parent link="l1_foot_ft_link"/>
-            <child link="l_foot_base_link"/>
-        </joint>
 
     </xacro:macro>
 </robot>
