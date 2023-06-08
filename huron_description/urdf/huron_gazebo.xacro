@@ -157,101 +157,101 @@
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <!-- Battery -->
     <gazebo reference="battery_link">
         <material>Gazebo/SkyBlue</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <!-- Left Leg -->
     <gazebo reference="l_hip_yaw_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="l_hip_roll_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="l_hip_pitch_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="l_knee_pitch_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="l_ankle_pitch_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="l_ankle_roll_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
+        <!-- <kp>100000.0</kp> -->
+        <!-- <kd>100.0</kd> -->
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <fdir1>1 0 0</fdir1>
-        <maxVel>1.0</maxVel>
-        <minDepth>0.001</minDepth>
+        <!-- <fdir1>1 0 0</fdir1> -->
+        <!-- <maxVel>1.0</maxVel> -->
+        <!-- <minDepth>0.001</minDepth> -->
         <material>Gazebo/Blue</material>
     </gazebo>
     
     <gazebo reference="l1_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo>  
     
     <gazebo reference="l2_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo> 
     
     <gazebo reference="l3_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo> 
     
     <gazebo reference="l4_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo>
     
@@ -260,89 +260,89 @@
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="r_hip_roll_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="r_hip_pitch_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="r_knee_pitch_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="r_ankle_pitch_link">
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
-        <selfCollide>true</selfCollide>
+        <selfCollide>false</selfCollide>
     </gazebo>
     <gazebo reference="r_ankle_roll_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
+        <!-- <kp>100000.0</kp> -->
+        <!-- <kd>100.0</kd> -->
         <mu1>0.9</mu1>
         <mu2>0.9</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <fdir1>1 0 0</fdir1>
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <!-- <fdir1>1 0 0</fdir1> -->
+        <!--  <maxVel>1.0</maxVel>  -->
+        <!-- <minDepth>0.0001</minDepth> -->
         <material>Gazebo/Blue</material>
     </gazebo>   
 
     <gazebo reference="r1_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo>  
     
     <gazebo reference="r2_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo> 
     
     <gazebo reference="r3_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo> 
     
     <gazebo reference="r4_foot_ft_link">
-        <kp>100000.0</kp>
-        <kd>100.0</kd>
-        <mu1>0.9</mu1>
-        <mu2>0.9</mu2>
+        <kp>1e7</kp>
+        <kd>1e5</kd>
+        <mu1>1.5</mu1>
+        <mu2>1.5</mu2>
         <!--<maxContacts>30</maxContacts>-->
-        <!-- <fdir1>1 0 0</fdir1> -->
-         <maxVel>1.0</maxVel> 
-        <minDepth>0.0001</minDepth>
+        <fdir1>1 0 0</fdir1>
+         <maxVel>0.0</maxVel> 
+        <minDepth>0.001</minDepth>
         <material>Gazebo/Orange</material>
     </gazebo> 
 
