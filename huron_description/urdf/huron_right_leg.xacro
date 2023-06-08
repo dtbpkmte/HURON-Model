@@ -8,7 +8,7 @@
           name="r_hip_yaw_joint"
           type="revolute">
           <origin
-            xyz="0.0774999999999944 0 -0.1451242"
+            xyz="0.0775 0 -0.14512"
             rpy="0 0 ${pi}" />
           <parent
             link="${parent}" />
@@ -23,7 +23,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="5" />
+            friction="8" />
         </joint>
         <xacro:insert_transmission name="r_hip_yaw_joint"/>
         <!-- right hip yaw link -->
@@ -58,7 +58,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="5" />
+            friction="8" />
         </joint>
         <xacro:insert_transmission name="r_hip_roll_joint"/>
         <!-- right hip roll link -->
@@ -78,7 +78,7 @@
           name="r_hip_pitch_joint"
           type="revolute">
           <origin
-            xyz="0 0 0"
+            xyz="-1.6665E-05 -0.0165 -5E-05"
             rpy="${-pi/2} 0 ${-pi/2}" />
           <parent
             link="r_hip_roll_link" />
@@ -93,7 +93,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="5" />
+            friction="8" />
         </joint>
         <xacro:insert_transmission name="r_hip_pitch_joint"/>
         <!-- right hip pitch link -->
@@ -113,7 +113,7 @@
           name="r_knee_pitch_joint"
           type="revolute">
           <origin
-            xyz="0.512778478308813 4.99999999867273E-05 -1.66647320091612E-05"
+            xyz="0.49628 0 0"
             rpy="0 0 0" />
           <parent
             link="r_hip_pitch_link" />
@@ -128,7 +128,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="5" />
+            friction="8" />
         </joint>
         <xacro:insert_transmission name="r_knee_pitch_joint"/>
         <!-- right knee pitch link -->
@@ -148,7 +148,7 @@
           name="r_ankle_pitch_joint"
           type="revolute">
           <origin
-            xyz="0.370000000000006 -3.16358749707368E-05 -0.00249999999999943"
+            xyz="0.37 0 0"
             rpy="0 0 0.0" />
           <parent
             link="r_knee_pitch_link" />
@@ -163,7 +163,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="2.0" />
+            friction="4" />
         </joint>
         <xacro:insert_transmission name="r_ankle_pitch_joint"/>
         <!-- right ankle pitch link -->
@@ -198,7 +198,7 @@
             velocity="${dxl_speed}" />
           <dynamics
             damping="0.5"
-            friction="2.0" />
+            friction="4" />
         </joint>
         <xacro:insert_transmission name="r_ankle_roll_joint"/>
         <!-- right ankle roll link -->
@@ -217,7 +217,7 @@
        <!-- right ft fixed joint 1 -->
         <joint name="r1_ft_fixed" type="revolute">
             <origin
-              xyz="0.0982708740959065 0.0143480673989493 0.127875866180863"
+              xyz="0.098297 0.01417 0.12788"
               rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
@@ -245,7 +245,7 @@
         <!-- right ft fixed joint 2 -->
         <joint name="r2_ft_fixed" type="revolute">
             <origin
-              xyz="0.0983344633797905 -0.0206518748353312 0.127875866180863"
+              xyz="0.098297 -0.02083 0.12788"
               rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
@@ -274,7 +274,7 @@
         <!-- right ft fixed joint 3 -->
         <joint name="r3_ft_fixed" type="revolute">
             <origin
-              xyz="0.0983275192522874 -0.0168297833346846 0"
+              xyz="0.098297 -0.017008 0"
               rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
@@ -303,7 +303,7 @@
         <!-- right ft fixed joint 4 -->
         <joint name="r4_ft_fixed" type="revolute">
             <origin
-              xyz="0.0982666399609057 0.0166785619632585 0"
+              xyz="0.098297 0.0165 0"
               rpy="0 0 ${pi/2}" />
             <axis xyz="0 0 1"/>
             <parent link="r_ankle_roll_link"/>
