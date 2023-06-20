@@ -44,7 +44,7 @@
     
     <gazebo>
     <plugin name="r1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-        <updateRate>50.0</updateRate>
+        <updateRate>100.0</updateRate>
         <topicName>/huron/sensor/r1_ft_sensor</topicName>
         <jointName>r_ankle_roll_joint</jointName>
         <gaussianNoise>0.0</gaussianNoise>
@@ -58,7 +58,7 @@
     
     <gazebo>
     <plugin name="l1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-        <updateRate>50.0</updateRate>
+        <updateRate>100.0</updateRate>
         <topicName>/huron/sensor/l1_ft_sensor</topicName>
         <jointName>l_ankle_roll_joint</jointName>
         <gaussianNoise>0.0</gaussianNoise>
