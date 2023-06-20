@@ -1,5 +1,5 @@
 %syms m1 m2 m3 l1 l2 l3 lc1 lc2 lc3 I1 I2 I3 theta1 theta2 theta3 theta1_dot theta2_dot theta3_dot g
-clear; close all;
+syms t theta1(t) theta2(t) theta3(t)
 rosshutdown;
 % ROS Setup
 rosinit;
@@ -19,6 +19,10 @@ j9_effort = rospublisher('/huron/r_hip_pitch_effort/command');
 j10_effort= rospublisher('/huron/r_hip_roll_effort/command');
 
 JointStates = rossubscriber('/huron/joint_states');
+
+r1_ft_sensor = rossubscriber('/huron/sensor/r1_ft_sensor');
+l1_ft_sensor = rossubscriber('/huron/sensor/l1_ft_sensor');
+
  
 tau1 = rosmessage(j1_effort);
 tau2 = rosmessage(j2_effort);
@@ -40,12 +44,6 @@ resp = call(client,req,'Timeout',3);
 % tic;
 t = 0;
 
- 
-
-% Main Loop
-count = 1;
-
-
 data_size = 10000;
 tau_plot = zeros(3, data_size);
 tau_components = zeros(6, data_size);
@@ -59,6 +57,15 @@ sum_theta_error_plot = zeros(3, data_size);
 
 tOld = rostime('now');
 tOld = tOld.Sec + tOld.Nsec/1e9;
+
+% Varabiles for plotting
+Theta_COM=[];
+W_velocity_COM=[];
+COP=[];
+Time=[];
+
+% Main Loop
+count = 1;
 while(t <= 15)
 % t = toc;
 t = rostime('now');
@@ -104,6 +111,17 @@ theta2_dot=knee_pitch_theta_dot;
 theta3_dot=hip_pitch_theta_dot;
 
 
+%% COP Calculation from Force/Torque Sensors at the ankle joint.
+% read the force sensor readings right foot
+r1_ft = receive(r1_ft_sensor);
+% read the force sensor readings left foot
+l1_ft = receive(l1_ft_sensor);
+% Prints COP
+
+COP(end+1)=calcCOP(r1_ft, l1_ft) ;
+%% end of COP calculation from Force/Torque sensors at the ankle joint.
+
+
 %% EOM of 3 DOF model
  m1=5.9117; m2=4.2554; m3=10.19329; lc1=0.15149; lc2=0.24517 ; lc3=0.1585; l1=0.3715; l2=0.49478; l3=0.32662; g=9.81; I1=0.0222 ; I2=0.01009 ;I3=0.0219 ; % mass in kg, length in meter
  q1 = theta1;
@@ -140,8 +158,45 @@ Z_COM=( (lc1*cos(theta1))*m1 + (l1*cos(theta1)+lc2*cos(theta1+theta2))*m2 + (l1*
 Z_dot_COM=(  -m1*(theta1_dot*lc1*sin(theta1)) + m2*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*lc2*sin(theta1+theta2) ) + m3*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*l2*sin(theta1+theta2) - (theta1_dot+theta2_dot+theta3_dot)*lc3*sin(theta1+theta2+theta3)) )/(m1+m2+m3); % velocity of the COM in z_direction 
 J_Z_COM=[(m3*(-l2*sin(theta1 + theta2) - l1*sin(theta1) - lc3*sin(theta1 + theta2 + theta3)) + m2*(-lc2*sin(theta1 + theta2) - l1*sin(theta1)) - lc1*m1*sin(theta1))/(m1 + m2 + m3), (m3*(-l2*sin(theta1 + theta2) - lc3*sin(theta1 + theta2 + theta3)) - lc2*m2*sin(theta1 + theta2))/(m1 + m2 + m3), (-lc3*m3*sin(theta1 + theta2 + theta3))/(m1 + m2 + m3)]; % Jacobian Matrix of Z-COM Jz
  
-J_COM=[J_X_COM ; J_Z_COM];
+J_COM=[J_X_COM ; J_Z_COM]; % Linear part of Jacobian matrix of COM
+%..........................................................................
+J_W_COM=[1 , 1 ,1 ];
+J_total_COM=[J_X_COM ; J_W_COM] ; % linear and angular part of Jacobian of COM
+J_total_COM_dot=[ J_X_COM_dot ; 0 0 0]; % time derivative of total Jacobian of COM
+J_total_COM_pseduo=pinv(J_total_COM);  % pseduo inverse of the total Jacobian of COM
  %%  End of Center of Mass COM calculation.
+
+ %% Calculation of Center of mass COM angular position and velocity
+% X_position_COM=( (lc1*sin(-theta1(t)))*m1 + (l1*sin(-theta1(t))+lc2*sin(-theta1(t)-theta2(t)))*m2 + (l1*sin(-theta1(t))+l2*sin(-theta1(t)-theta2(t))+lc3*sin(-theta1(t)-theta2(t)-theta3(t)))*m3  ) / (m1+m2+m3) ; % Center of Mass position in x_direction
+% Z_position_COM=( (lc1*cos(-theta1(t)))*m1 + (l1*cos(-theta1(t))+lc2*cos(-theta1(t)-theta2(t)))*m2 + (l1*cos(-theta1(t))+l2*cos(-theta1(t)-theta2(t))+lc3*cos(-theta1(t)-theta2(t)-theta3(t)))*m3  ) / (m1+m2+m3);   % Center of Mass position in z_direction
+% Calculation of Angle and velocity of COM w.r.t ankle joint
+% X_COM=( (lc1*sin(-theta1(t)))*m1 + (l1*sin(-theta1(t))+lc2*sin(-theta1(t)-theta2(t)))*m2 + (l1*sin(-theta1(t))+l2*sin(-theta1(t)-theta2(t))+lc3*sin(-theta1(t)-theta2(t)-theta3(t)))*m3  ) / (m1+m2+m3) ; % Center of Mass position in x_direction
+% Z_COM=( (lc1*cos(-theta1(t)))*m1 + (l1*cos(-theta1(t))+lc2*cos(-theta1(t)-theta2(t)))*m2 + (l1*cos(-theta1(t))+l2*cos(-theta1(t)-theta2(t))+lc3*cos(-theta1(t)-theta2(t)-theta3(t)))*m3  ) / (m1+m2+m3);   % Center of Mass position in z_direction
+%  Angle_COM=atan2( X_COM , Z_COM )  % In rad 
+%  angular_velocity_COM=diff(Angle_COM,t)
+% Angle_COM=angle((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3) - ((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))*1i)/(m1 + m2 + m3)) ; 
+% W_COM=-((real((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3)) + imag((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))/(m1 + m2 + m3)))^2*((imag((m3*(l2*sin(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*sin(theta1)*theta1_dot + lc3*sin(theta1 + theta2 + theta3)*(theta1_dot + theta2_dot + theta3_dot)) + m2*(lc2*sin(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*sin(theta1)*theta1_dot) + lc1*m1*sin(theta1)*theta1_dot)/(m1 + m2 + m3)) + real((m3*(l2*cos(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*cos(theta1)*theta1_dot + lc3*cos(theta1 + theta2 + theta3)*(theta1_dot + theta2_dot + theta3_dot)) + m2*(lc2*cos(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*cos(theta1)*theta1_dot) + lc1*m1*cos(theta1)*theta1_dot)/(m1 + m2 + m3)))/(real((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3)) + imag((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))/(m1 + m2 + m3))) - ((imag((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3)) - real((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))/(m1 + m2 + m3)))*(real((m3*(l2*sin(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*sin(theta1)*theta1_dot + lc3*sin(theta1 + theta2 + theta3)*(theta1_dot + theta2_dot + theta3_dot)) + m2*(lc2*sin(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*sin(theta1)*theta1_dot) + lc1*m1*sin(theta1)*theta1_dot)/(m1 + m2 + m3)) - imag((m3*(l2*cos(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*cos(theta1)*theta1_dot + lc3*cos(theta1 + theta2 + theta3)*(theta1_dot + theta2_dot + theta3_dot)) + m2*(lc2*cos(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*cos(theta1)*theta1_dot) + lc1*m1*cos(theta1)*theta1_dot)/(m1 + m2 + m3))))/(real((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3)) + imag((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))/(m1 + m2 + m3)))^2))/((real((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3)) + imag((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))/(m1 + m2 + m3)))^2 + (imag((m2*(l1*cos(theta1) + lc2*cos(theta1 + theta2)) + m3*(l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3) + l2*cos(theta1 + theta2)) + lc1*m1*cos(theta1))/(m1 + m2 + m3)) - real((m3*(l1*sin(theta1) + lc3*sin(theta1 + theta2 + theta3) + l2*sin(theta1 + theta2)) + m2*(l1*sin(theta1) + lc2*sin(theta1 + theta2)) + lc1*m1*sin(theta1))/(m1 + m2 + m3)))^2);
+
+Angle_COM=-(theta1+theta2+theta3);
+W_COM=-(theta1_dot+theta2_dot+theta3_dot);
+ %% End of calculation of center of mass angular position and velocity
+
+ %% Coupled Linear and Angular momentum controller using PD controller
+ kpx=1  ; kdx=2 ; kptheta=1 ; kdtheta=0.5;
+ P_COM_ddot= -kpx * (X_COM) - kdx * (X_dot_COM);
+ alpha_COM= -kptheta * (Angle_COM) - kdtheta * (W_COM) ;
+
+ theta_ddot_reference=  J_total_COM_pseduo * ( [P_COM_ddot ; alpha_COM] - J_total_COM_dot *[ theta1_dot ; theta2_dot ; theta3_dot ] ) ; 
+ Torque_PD_coupled= M * theta_ddot_reference + N ; % torque generated by coupled momentum sith PD controller
+ %% end of linear and angular momentum controller using PD controller
+
+  %% End of calculation of center of mass angular position and velocity
+
+
+%% Coupled Linear and Angular momentum controller using SMC controller
+% Add your SMC controller
+%% end of linear and angular momentum controller using SMC controller
+
 
 %% Sliding mode control(Linear sliding surface + linear reaching law).
 % s = edot + lambda*e, sdot = -K1*s -K2*sat(s)  
@@ -156,9 +211,7 @@ if norm(s) >= phi
 else
     sat = s / phi;
 end
-q_SMC_dotdot = -Pseudo_J_X_COM*(k1*s + k2*sat + J_X_COM_dot*theta_dot - x_com_d + lambda*error_dot);
-tau = N + M*q_SMC_dotdot;
-
+tau = N - M*Pseudo_J_X_COM*(k1*s + k2*sat + J_X_COM_dot*theta_dot - x_com_d + lambda*error_dot);
 %% End of Sliding mode control(Linear sliding surface + linear reaching law).
 
 %% adding impedance model at the center of mass of the upper link
@@ -171,13 +224,12 @@ FX=-0.1*X_COM_upper-10*X_COM_upper_dot; % Gains work with TCOM CTC controller
 FY=m3*9.8;
 Torque_Impedance_at_hip=transpose(J) *[FX ;FY];
 %% end of adding impedance model at the center of mass of the upper link
-
 %% Posture correction
 theta_d = [theta1_d; theta2_d; theta3_d];
 theta = [theta1; theta2; theta3];
 theta_dot = [theta1_dot; theta2_dot; theta3_dot];
 
-Kp_posture = diag([10 10 120]); % Gain matrix 
+Kp_posture = diag([10 10 100]); % Gain matrix 
 Ki_posture = diag([2000 2000 2000]);
 Kd_posture = diag([1 1 1]);
 
@@ -200,17 +252,19 @@ J2_bar_pinv = pinv(J2_bar);
 % T_posture = M*(eye(3) - Pseudo_J_X_COM*J_X_COM)*(K_posture*theta_error + Ki_posture*sum_theta_error);
 
 % Control
-x2_dotdot = Kp_posture*(theta_d - theta) + Kd_posture*(-theta_dot);
-q2_dotdot = N1*J2_bar_pinv*(x2_dotdot - J2_dot*theta_dot - J2*q_SMC_dotdot);
+% x2_dotdot = Kp_posture*(theta_d - theta) + Kd_posture*(-theta_dot);
+x2_dotdot = Kp_posture*(theta_d - theta);
+q2_dotdot = N1*J2_bar_pinv*(x2_dotdot - J2_dot*theta_dot - J2*theta_ddot_reference);
 
 T_posture = M*q2_dotdot;
 
 %% End of Posture correction
 
 %% Addition of Controllers
-% T=tau+Torque_Impedance_at_hip + T_posture; % SMC from Abizer + VMC at upper link
-% T=tau; % SMC from Abizer
-T = tau + T_posture; % SMC + posture correction
+% T=tau+Torque_Impedance_at_hip; % SMC from Abizer + VMC at upper link
+T= Torque_PD_coupled + T_posture;        % Torque generated from coupled momentum using PD controller
+
+
 if T(1) >= 30
     T(1) = 30;
 end
@@ -225,8 +279,9 @@ T_hip = T(3);
 
 
 
+
 %Store and print values at an interval of 0.1 seconds
-% if ((t - tOld) >= 0.1 || count == 1)
+if ((t - tOld) >= 0.1 || count == 1)
     tau_plot(1, count) = T_ankle;
     tau_plot(2, count) = T_knee;
     tau_plot(3, count) = T_hip;
@@ -236,26 +291,16 @@ T_hip = T(3);
     tOld = t; 
     timeStamps(1,count) = t;
     com_plot(1,count) = X_COM; 
-    
-    % Torque contributed by SMC
-    % Torque contributed by Posture correction
-    tau_components(:, count) = [tau; T_posture];
-
-    sum_theta_error_plot(:, count) = sum_theta_error;
-
-    x_com_dot_plot(1, count) = X_dot_COM;
-
     count = count + 1;
-
-    % fprintf("error is: ");
-    % fprintf("%f %f %f\n", error);
-    % fprintf("theta is: ");
-    % fprintf("%f %f %f\n", theta1, theta2, theta3);
-    % % fprintf("s is: ");
-    % % fprintf("%f %f %f\n", s);
-    % fprintf("torque is: ");
-    % fprintf("%f %f %f\n", T_ankle, T_knee, T_hip);
-% end
+    fprintf("error is: ");
+    fprintf("%f %f %f\n", error);
+    fprintf("theta is: ");
+    fprintf("%f %f %f\n", theta1, theta2, theta3);
+    % fprintf("s is: ");
+    % fprintf("%f %f %f\n", s);
+    fprintf("torque is: ");
+    fprintf("%f %f %f\n", T_ankle, T_knee, T_hip);
+end
 
 % Publish Torque to Joints
   tau1.Data =T_ankle; % left ankle pitch
@@ -279,15 +324,19 @@ T_hip = T(3);
   send(j9_effort,tau9);
 
  
+  Theta_COM(end+1)=Angle_COM;
+  W_velocity_COM(end+1)=W_COM;
+  Time(end+1)=t;
 end
+ Theta_COM';
+ W_velocity_COM';
+ Time';
+ COP' ; 
  
-tau_plot = tau_plot(:, 1:count-1);
-tau_components = tau_components(:, 1:count-1);
-theta_plot = theta_plot(:, 1:count-1);
-timeStamps = timeStamps(:, 1:count-1);
-com_plot = com_plot(:, 1:count-1);
-sum_theta_error_plot = sum_theta_error_plot(:, 1:count-1);
-x_com_dot_plot = x_com_dot_plot(:, 1:count-1);
+
+
+
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tau1.Data = 0;
@@ -332,31 +381,57 @@ legend("knee pitch")
 subplot(4,3,6);
 plot(timeStamps, theta_plot(3,:),"Color",'b');
 legend("hip pitch")
-subplot(4,3,10);
+subplot(4,3,7);
 plot(timeStamps, com_plot,"Color",'m');
 legend("com")
-subplot(4,3,7);
-plot(timeStamps, tau_components(1, :),"Color",'m');
-hold on
-plot(timeStamps, tau_components(4, :),"Color",'g');
-legend("T_SMC ankle", "T_posture ankle")
-hold off
-subplot(4,3,8);
-plot(timeStamps, tau_components(2, :),"Color",'m');
-hold on
-plot(timeStamps, tau_components(5, :),"Color",'g');
-legend("T_SMC knee", "T_posture knee")
-hold off
-subplot(4,3,9);
-plot(timeStamps, tau_components(3, :),"Color",'m');
-hold on
-plot(timeStamps, tau_components(6, :),"Color",'g');
-legend("T_SMC hip", "T_posture hip")
-hold off
-subplot(4,3,11);
-plot(timeStamps, sum_theta_error_plot);
-% TODO: plot norm(theta_error)
-subplot(4,3,12);
-plot(timeStamps, x_com_dot_plot);
-
  
+
+figure;
+subplot(1,2,1)
+plot(Time,Theta_COM )
+title('COM Angular Position in rad')
+subplot(1,2,2)
+plot(Time,W_velocity_COM)
+title('COM Angular Velocity in rad/sec')
+
+figure;
+plot(Time,COP)
+title('COP Position in m ')
+
+
+
+function cop_x = calcCOP(r1_ft, l1_ft)
+%READCOP Returns COP_x in meters
+%   Outputs:
+%   cop_x: x coordinate of COP
+%   Inputs:
+%   r1_ft: Wrench message from right sensor
+%   l1_ft: Wrench message from left sensor
+    % Vertical distance from the load cell to bottom of the foot
+d = 0.0983224252792114;
+% Position of left sensor
+p1 = [0; 0.0775; d];
+% Position of right sensor
+p2 = [0; -0.0775; d];
+tau_R = [
+        r1_ft.Wrench.Torque.X, ...
+        r1_ft.Wrench.Torque.Y, ...
+        r1_ft.Wrench.Torque.Z
+    ];
+tau_L = [
+        l1_ft.Wrench.Torque.X, ...
+        l1_ft.Wrench.Torque.Y, ...
+        l1_ft.Wrench.Torque.Z
+    ];
+f_R = [
+        r1_ft.Wrench.Force.X, ...
+        r1_ft.Wrench.Force.Y, ...
+        r1_ft.Wrench.Force.Z
+    ];
+f_L = [
+        l1_ft.Wrench.Force.X, ...
+        l1_ft.Wrench.Force.Y, ...
+        l1_ft.Wrench.Force.Z
+    ];
+ cop_x = (tau_L(2) + d*f_L(3) + tau_R(2) + d*f_R(3)) ./ (f_L(1) + f_R(1));
+end
