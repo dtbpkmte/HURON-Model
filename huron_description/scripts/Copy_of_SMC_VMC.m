@@ -105,51 +105,44 @@ theta2_dot=knee_pitch_theta_dot;
 theta3_dot=hip_pitch_theta_dot;
 
 
-%% EOM of 3 DOF model from (Achievement of chaotic paper).
-% Physcial Parameters Values
-m1=5.9117; m2=4.2554; m3=10.19329; lc1=0.15149; lc2=0.24517 ; lc3=0.1585; l1=0.3715; l2=0.49478; l3=0.32662; g=9.81; I1=0.0222 ; I2=0.01009 ;I3=0.0219 ; % mass in kg, length in meter
-% Mass Matrix
-M11=-lc1^2 *m1-(l1^2+lc2^2+2*l1*lc2*cos(theta2))*m2-(l1^2+l2^2+lc3^2+2*l1*l2*cos(theta2)+2*l2*lc3*cos(theta3)+2*l1*lc3*cos(theta2+theta3))*m3+I1+I2+I3;
-M12=-(lc2^2+l1*lc2*cos(theta2))*m2-(l2^2+lc3^2+l1*l2*cos(theta2)+2*l2*lc3*cos(theta3)+l1*lc3*cos(theta2+theta3))*m3+I2+I3;
-M21=-(lc2^2+l1*lc2*cos(theta2))*m2-(l2^2+lc3^2+l1*l2*cos(theta2)+2*l2*lc3*cos(theta3)+l1*lc3*cos(theta2+theta3))*m3+I2+I3;
-M13=-(lc3^2+l1*lc3*cos(theta2+theta3)+l2*lc3*cos(theta3))*m3+I3;
-M31=-(lc3^2+l1*lc3*cos(theta2+theta3)+l2*lc3*cos(theta3))*m3+I3;
-M22=-lc2^2*m2-(l2^2+lc3^2+2*l2*lc3*cos(theta3))*m3+I2+I3;
-M23=-(lc3^2+l2*lc3*cos(theta3))*m3+I3;
-M32=-(lc3^2+l2*lc3*cos(theta3))*m3+I3;
-M33=-lc3^2*m3+I3;
-M=[M11 M12 M13 ; M21 M22 M23 ; M31 M32 M33];
-% Coriolous Force
-C1=(m2*l1*lc2*sin(theta2)+m3*l1*l2*sin(theta2)+m3*l1*lc3*sin(theta2+theta3))*(theta2_dot)^2 + (m3*l2*lc3*sin(theta3)+m3*l1*lc3*sin(theta2+theta3))*(theta3_dot)^2 + 2*(m2*l1*lc2*sin(theta2)+m3*l1*l2*sin(theta2)+m3*l1*lc3*sin(theta2+theta3))*theta1*theta2 + 2*(m3*l2*lc3*sin(theta3)+m3*l1*lc3*sin(theta2+theta3))*theta2*theta3 + 2*(m3*l2*lc3*sin(theta3)+m3*l1*lc3*sin(theta2+theta3))*theta1*theta3 ;
-C2=-(m2*l1*lc2*sin(theta2)+m3*l1*l2*sin(theta2)+m3*l1*lc3*sin(theta2+theta3))*(theta1_dot)^2 + m3*l2*lc3*sin(theta3)*(theta3_dot)^2 + 2*m3*l2*lc3*sin(theta3)*theta2*theta3 + 2*m3*l2*lc3*sin(theta3)*theta1*theta3;
-C3=-(m3*l2*lc3*sin(theta3)+m3*l1*lc3*sin(theta2+theta3))*(theta1_dot)^2 - m3*l2*lc3*sin(theta3)*(theta2_dot)^2 - 2*m3*l2*lc3*sin(theta3)*theta1*theta2 ;
-C=[C1 ; C2 ;C3]; % Coriolous Vector
-% Gravitaional Vector
-g1= -lc1*sin(theta1)*m1*g-(l1*sin(theta1)+lc2*sin(theta1+theta2))*m2*g - (l1*sin(theta1)+l2*sin(theta1+theta2)+lc3*sin(theta1+theta2+theta3))*m3*g;
-g2= -lc2*sin(theta1+theta2)*m2*g - (l2*sin(theta1+theta2)+lc3*sin(theta1+theta2+theta3))*m2*g;
-g3=-lc3*sin(theta1+theta2+theta3)*m3*g;
-G=[g1 ; g2 ; g3]; % gravitaional vector
-N=C+G;
-%% end of 3 DOF model from ( Achievement of chaotic paper )................
+%% EOM of 3 DOF model
+ m1=5.9117; m2=4.2554; m3=10.19329; lc1=0.15149; lc2=0.24517 ; lc3=0.1585; l1=0.3715; l2=0.49478; l3=0.32662; g=9.81; I1=0.0222 ; I2=0.01009 ;I3=0.0219 ; % mass in kg, length in meter
+ q1 = theta1;
+ q2 = theta2;
+ q3 = theta3;
+ q_dot1 = theta1_dot;
+ q_dot2 = theta2_dot;
+ q_dot3 = theta3_dot;
+ r1 = lc1;
+ r2 = lc2;
+ r3 = lc3;
+ 
+ M = [I1 + I2 + I3 + l1^2*m2 + l1^2*m3 + l2^2*m3 + m1*r1^2 + m2*r2^2 + m3*r3^2 + 2*l1*m3*r3*cos(q2 + q3) + 2*l1*l2*m3*cos(q2) + 2*l1*m2*r2*cos(q2) + 2*l2*m3*r3*cos(q3), m3*l2^2 + 2*m3*cos(q3)*l2*r3 + l1*m3*cos(q2)*l2 + m2*r2^2 + l1*m2*cos(q2)*r2 + m3*r3^2 + l1*m3*cos(q2 + q3)*r3 + I2 + I3, I3 + m3*r3^2 + l1*m3*r3*cos(q2 + q3) + l2*m3*r3*cos(q3);
+m3*l2^2 + 2*m3*cos(q3)*l2*r3 + l1*m3*cos(q2)*l2 + m2*r2^2 + l1*m2*cos(q2)*r2 + m3*r3^2 + l1*m3*cos(q2 + q3)*r3 + I2 + I3, m3*l2^2 + 2*m3*cos(q3)*l2*r3 + m2*r2^2 + m3*r3^2 + I2 + I3, m3*r3^2 + l2*m3*cos(q3)*r3 + I3;
+I3 + m3*r3^2 + l1*m3*r3*cos(q2 + q3) + l2*m3*r3*cos(q3), m3*r3^2 + l2*m3*cos(q3)*r3 + I3, m3*r3^2 + I3];
 
+ C = [- l1*m3*q_dot2^2*r3*sin(q2 + q3) - l1*m3*q_dot3^2*r3*sin(q2 + q3) - l1*l2*m3*q_dot2^2*sin(q2) - l1*m2*q_dot2^2*r2*sin(q2) - l2*m3*q_dot3^2*r3*sin(q3) - 2*l1*m3*q_dot1*q_dot2*r3*sin(q2 + q3) - 2*l1*m3*q_dot1*q_dot3*r3*sin(q2 + q3) - 2*l1*m3*q_dot2*q_dot3*r3*sin(q2 + q3) - 2*l1*l2*m3*q_dot1*q_dot2*sin(q2) - 2*l1*m2*q_dot1*q_dot2*r2*sin(q2) - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3);
+    l1*m3*q_dot1^2*r3*sin(q2 + q3) + l1*l2*m3*q_dot1^2*sin(q2) + l1*m2*q_dot1^2*r2*sin(q2) - l2*m3*q_dot3^2*r3*sin(q3) - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3);
+    l1*m3*q_dot1^2*r3*sin(q2 + q3) + l2*m3*q_dot1^2*r3*sin(q3) + l2*m3*q_dot2^2*r3*sin(q3) + 2*l2*m3*q_dot1*q_dot2*r3*sin(q3)];
+
+ G = [- g*l2*m3*sin(q1 + q2) - g*m2*r2*sin(q1 + q2) - g*l1*m2*sin(q1) - g*l1*m3*sin(q1) - g*m1*r1*sin(q1) - g*m3*r3*sin(q1 + q2 + q3);
+    - g*l2*m3*sin(q1 + q2) - g*m2*r2*sin(q1 + q2) - g*m3*r3*sin(q1 + q2 + q3);
+    -g*m3*r3*sin(q1 + q2 + q3)];
+
+ N = C + G; 
 %% Center of Mass COM calculation.
-X_COM=( (lc1*sin(theta1))*m1 + (l1*sin(theta1)+lc2*sin(theta1+theta2))*m2 + (l1*sin(theta1)+l2*sin(theta1+theta2)+lc3*sin(theta1+theta2+theta3))*m3  ) / (m1+m2+m3); % Center of Mass position in x_direction
-X_dot_COM=(  m1*(theta1_dot*lc1*cos(theta1)) + m2*(theta1_dot*l1*cos(theta1) +(theta1_dot+theta2_dot)*lc2*cos(theta1+theta2)) + m3*(theta1_dot*l1*cos(theta1)+(theta1_dot+theta2_dot)*l2*cos(theta1+theta2)+(theta1_dot+theta2_dot+theta3_dot)*lc3*cos(theta1+theta2+theta3)) )/(m1+m2+m3); % velocity of the COM in x_direction
-
-J_X_COM=[(m3*(l2*cos(theta1 + theta2) + l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3)) + m2*(lc2*cos(theta1 + theta2) + l1*cos(theta1)) + lc1*m1*cos(theta1))/(m1 + m2 + m3), (m3*(l2*cos(theta1 + theta2) + lc3*cos(theta1 + theta2 + theta3)) + lc2*m2*cos(theta1 + theta2))/(m1 + m2 + m3), (lc3*m3*cos(theta1 + theta2 + theta3))/(m1 + m2 + m3)]; % Jacobian Matrix of X-COM Jx
-
-J_X_COM_dot=[(-m1*theta1_dot*lc1*sin(theta1) + m2*(-l1*theta1_dot*sin(theta1)-(theta1_dot+theta2_dot)*lc2*sin(theta1+theta2) )  + m3*(-l2*(theta1_dot+theta2_dot)*sin(theta1+theta2)-l1*theta1_dot*sin(theta1)-(theta1_dot+theta2_dot+theta3_dot)*lc3*sin(theta1+theta2+theta3)) )/(m1+m2+m3) ,( m3*(-l2*(theta1_dot+theta2_dot)*sin(theta1+theta2) -lc3*(theta1_dot+theta2_dot+theta3_dot)*sin(theta1+theta2+theta3) ) -lc2*(theta1_dot+theta2_dot)*m2*sin(theta1+theta2) )/(m1+m2+m3) ,(-lc3*(theta1_dot+theta2_dot+theta3_dot)*m3*sin(theta1+theta2+theta3) )/(m1+m2+m3)]; % Time Derivative of Jacobian Matrix
-
+X_COM= -1*((lc1*sin(theta1))*m1 + (l1*sin(theta1)+lc2*sin(theta1+theta2))*m2 + (l1*sin(theta1)+l2*sin(theta1+theta2)+lc3*sin(theta1+theta2+theta3))*m3) / (m1+m2+m3); % Center of Mass position in x_direction
+X_dot_COM= -1* (m1*(theta1_dot*lc1*cos(theta1)) + m2*(theta1_dot*l1*cos(theta1) +(theta1_dot+theta2_dot)*lc2*cos(theta1+theta2)) + m3*(theta1_dot*l1*cos(theta1)+(theta1_dot+theta2_dot)*l2*cos(theta1+theta2)+(theta1_dot+theta2_dot+theta3_dot)*lc3*cos(theta1+theta2+theta3)) )/(m1+m2+m3); % velocity of the COM in x_direction
+J_X_COM= -1* [(m3*(l2*cos(theta1 + theta2) + l1*cos(theta1) + lc3*cos(theta1 + theta2 + theta3)) + m2*(lc2*cos(theta1 + theta2) + l1*cos(theta1)) + lc1*m1*cos(theta1))/(m1 + m2 + m3), (m3*(l2*cos(theta1 + theta2) + lc3*cos(theta1 + theta2 + theta3)) + lc2*m2*cos(theta1 + theta2))/(m1 + m2 + m3), (lc3*m3*cos(theta1 + theta2 + theta3))/(m1 + m2 + m3)]; % Jacobian Matrix of X-COM Jx
+J_X_COM_dot=-1*[(-m1*theta1_dot*lc1*sin(theta1) + m2*(-l1*theta1_dot*sin(theta1)-(theta1_dot+theta2_dot)*lc2*sin(theta1+theta2) )  + m3*(-l2*(theta1_dot+theta2_dot)*sin(theta1+theta2)-l1*theta1_dot*sin(theta1)-(theta1_dot+theta2_dot+theta3_dot)*lc3*sin(theta1+theta2+theta3)) )/(m1+m2+m3) ,( m3*(-l2*(theta1_dot+theta2_dot)*sin(theta1+theta2) -lc3*(theta1_dot+theta2_dot+theta3_dot)*sin(theta1+theta2+theta3) ) -lc2*(theta1_dot+theta2_dot)*m2*sin(theta1+theta2) )/(m1+m2+m3) ,(-lc3*(theta1_dot+theta2_dot+theta3_dot)*m3*sin(theta1+theta2+theta3) )/(m1+m2+m3)]; % Time Derivative of Jacobian Matrix
 Pseudo_J_X_COM=pinv(J_X_COM); % Pseudo Inverse of J_X_COM
 
 Z_COM=( (lc1*cos(theta1))*m1 + (l1*cos(theta1)+lc2*cos(theta1+theta2))*m2 + (l1*cos(theta1)+l2*cos(theta1+theta2)+lc3*cos(theta1+theta2+theta3))*m3  ) / (m1+m2+m3); % Center of Mass position in z_direction
-Z_dot_COM=(  -m1*(theta1_dot*lc1*sin(theta1)) + m2*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*lc2*sin(theta1+theta2) ) + m3*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*l2*sin(theta1+theta2) - (theta1_dot+theta2_dot+theta3_dot)*lc3*sin(theta1+theta2+theta3)) )/(m1+m2+m3); % velocity of the COM in z_direction
-
+Z_dot_COM=(  -m1*(theta1_dot*lc1*sin(theta1)) + m2*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*lc2*sin(theta1+theta2) ) + m3*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*l2*sin(theta1+theta2) - (theta1_dot+theta2_dot+theta3_dot)*lc3*sin(theta1+theta2+theta3)) )/(m1+m2+m3); % velocity of the COM in z_direction 
 J_Z_COM=[(m3*(-l2*sin(theta1 + theta2) - l1*sin(theta1) - lc3*sin(theta1 + theta2 + theta3)) + m2*(-lc2*sin(theta1 + theta2) - l1*sin(theta1)) - lc1*m1*sin(theta1))/(m1 + m2 + m3), (m3*(-l2*sin(theta1 + theta2) - lc3*sin(theta1 + theta2 + theta3)) - lc2*m2*sin(theta1 + theta2))/(m1 + m2 + m3), (-lc3*m3*sin(theta1 + theta2 + theta3))/(m1 + m2 + m3)]; % Jacobian Matrix of Z-COM Jz
-
+ 
 J_COM=[J_X_COM ; J_Z_COM];
-
-%% end of COM Calculation
+ %%  End of Center of Mass COM calculation.
 
 %% Sliding mode control(Linear sliding surface + linear reaching law).
 % s = edot + lambda*e, sdot = -K1*s -K2*sat(s)  
@@ -231,17 +224,7 @@ J2_dot = theta_dot';
 % J2_1_bar = M_inv*J2_1'*Lambda_2_1;
 
 %% Nakanishi 2008
-%Gradient 
-Kw = diag([0.1 20 1]);
-del_g = Kw * theta;
-del_g_dot = Kw * theta_dot;
 
-%%Ksi
-a = 100;
-K_n = diag([0 1 1]);
-
-ksi_1 = -a*del_g;
-ksi_1_dot = -a*del_g_dot;
 
 %% 3.2.1. Hsu, eqn. 36
 % ksi_2 = J_X_COM_dot'*Pseudo_J_X_COM'*(theta_dot - ksi_1) + ...
@@ -250,21 +233,54 @@ ksi_1_dot = -a*del_g_dot;
 
 %% 3.2.2 Simplified with M eq.42
 % 
-K_q_d = diag([10 10 10]);
-ksi_2_simp = -K_q_d*theta_dot + ksi_1; 
+%Gradient 
+% Kw = diag([1 1 1]);
+% del_g = Kw * theta;
+% del_g_dot = Kw * theta_dot;
+% 
+% %%Ksi
+% a = 1;
+% K_n = diag([1 1 1]);
+% 
+% ksi_1 = -a*del_g;
+% ksi_1_dot = -a*del_g_dot;
+% 
+% K_q_d = diag([0.1 0.1 0.1]);
+% ksi_2_simp = -K_q_d*theta_dot + ksi_1; 
 %% 3.2.3 Simplified without M eqn.43
-% TODO
+% %Gradient 
+Kw = diag([0.5 1 1]);
+del_g = Kw * theta;
+del_g_dot = Kw * theta_dot;
 
+%%Ksi
+a = 100;
+K_n = diag([1 1 1]);
+
+ksi_1 = -a*del_g;
+ksi_1_dot = -a*del_g_dot;
+
+K_q_d = diag([0.1 0.1 0.1]);
+ksi_2_simp = -K_q_d*theta_dot + ksi_1;
+
+%% Dynamically consistent
+% M_inv = inv(M);
+% weighted_J_X_COM = M_inv*J_X_COM'*inv(J_X_COM*M_inv*J_X_COM');
+% tau_null = -K_q_d*theta_dot + ksi_1;
+% T_posture = (eye(3) - J_X_COM'*weighted_J_X_COM')*tau_null;
+% q_SMC_dotdot = -weighted_J_X_COM*(k1*s + k2*sat + J_X_COM_dot*theta_dot - x_com_d + lambda*error_dot);
+% tau = N + M*q_SMC_dotdot;
 %% Posture torque
 Phi_N = (eye(3) - Pseudo_J_X_COM*J_X_COM)*ksi_2_simp;
-T_posture = M*Phi_N;
+T_posture = Phi_N;
 
 %% End of Posture correction
 
-%% Addition of Controllers
+% Pseudo_J_X_COM%% Addition of Controllers
 % T=tau+Torque_Impedance_at_hip + T_posture; % SMC from Abizer + VMC at upper link
 % T=tau; % SMC from Abizer
 T = tau + T_posture; % SMC + posture correction
+% T = T_posture; % SMC + posture correction
 if T(1) >= 30
     T(1) = 30;
 end

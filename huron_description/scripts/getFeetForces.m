@@ -25,8 +25,8 @@ while t < 15 % loop for 15 seconds (sim time)
     % read the force sensor readings left foot
     l1_ft = receive(l1_ft_sensor);
     
-    % Prints COP
-    calcCOP(r1_ft, l1_ft)
+    % Prints forces
+    [F_R, F_L] = getFeetForces(r1_ft, l1_ft)
 
 end
 
@@ -36,31 +36,15 @@ rosshutdown;
 %--------------EXAMPLE CODE ENDS----------------%
 
 %% 
-function cop_x = calcCOP(r1_ft, l1_ft)
-%CALCCOP Returns COP_x in meters
+function [F_R, F_L] = getFeetForces(r1_ft, l1_ft)
+%GETFEETFORCES Returns forces in both feet, x (forward), y, z directions.
 %   Outputs:
-%   cop_x: x coordinate of COP
+%       F_R: 2x1, [F_Rx; F_Ry; F_Rz]: Right foot forces
+%       F_L: 2x1, [F_Lx; F_Ly; F_Lz]: Left foot forces
 %   Inputs:
 %   r1_ft: Wrench message from right sensor
 %   l1_ft: Wrench message from left sensor
 
-    % Vertical distance from the load cell to bottom of the foot
-    d = 0.0983224252792114;
-    % Position of left sensor
-    p1 = [0; 0.0775; d];
-    % Position of right sensor
-    p2 = [0; -0.0775; d];
-
-    tau_R = [
-        r1_ft.Wrench.Torque.X, ...
-        r1_ft.Wrench.Torque.Y, ...
-        r1_ft.Wrench.Torque.Z
-    ];
-    tau_L = [
-        l1_ft.Wrench.Torque.X, ...
-        l1_ft.Wrench.Torque.Y, ...
-        l1_ft.Wrench.Torque.Z
-    ];
     f_R = [
         r1_ft.Wrench.Force.X, ...
         r1_ft.Wrench.Force.Y, ...
@@ -72,6 +56,7 @@ function cop_x = calcCOP(r1_ft, l1_ft)
         l1_ft.Wrench.Force.Z
     ];
 
-    cop_x = (tau_L(2) + d*f_L(3) + tau_R(2) + d*f_R(3)) ./ (f_L(1) + f_R(1));
+    F_R = [f_R(3); f_R(2); -f_R(1)];
+    F_L = [f_L(3); f_L(2); -f_L(1)];
 end
 
