@@ -239,17 +239,17 @@ J2_dot = theta_dot';
 % del_g_dot = Kw * theta_dot;
 % 
 % %%Ksi
-% a = 1;
+% a = 100;
 % K_n = diag([1 1 1]);
 % 
 % ksi_1 = -a*del_g;
 % ksi_1_dot = -a*del_g_dot;
 % 
-% K_q_d = diag([0.1 0.1 0.1]);
+% K_q_d = diag([0 0 0]);
 % ksi_2_simp = -K_q_d*theta_dot + ksi_1; 
 %% 3.2.3 Simplified without M eqn.43
 % %Gradient 
-Kw = diag([0.5 1 1]);
+Kw = diag([1 1 1]);
 del_g = Kw * theta;
 del_g_dot = Kw * theta_dot;
 
@@ -260,7 +260,7 @@ K_n = diag([1 1 1]);
 ksi_1 = -a*del_g;
 ksi_1_dot = -a*del_g_dot;
 
-K_q_d = diag([0.1 0.1 0.1]);
+K_q_d = diag([1 1 1]);
 ksi_2_simp = -K_q_d*theta_dot + ksi_1;
 
 %% Dynamically consistent
@@ -332,7 +332,7 @@ T_hip = T(3);
   tau2.Data =0; % left ankle roll
   tau3.Data =T_knee; % left knee pitch
   tau4.Data = T_hip ; % left hip pitch
-%   tau5.Data =0;  % left hip roll
+  tau5.Data =0;  % left hip roll
   tau6.Data =T_ankle ; % right ankle pitch
   tau7.Data =0; % right ankle roll
   tau8.Data =T_knee; % right knee pitch
