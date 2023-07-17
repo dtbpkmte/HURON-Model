@@ -65,6 +65,18 @@
     </plugin>
     </gazebo>
     
+    <gazebo reference = "l_hip_yaw_joint">
+    	<preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+    <gazebo reference = "l_hip_roll_joint">
+    	<preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+    <gazebo reference = "r_hip_yaw_joint">
+    	<preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+    <gazebo reference = "r_hip_roll_joint">
+    	<preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
     
     <!-- World -->
     <gazebo reference="world"></gazebo>
@@ -92,6 +104,7 @@
         <mu2>0.2</mu2>
         <material>Gazebo/Grey</material>
         <selfCollide>false</selfCollide>
+
     </gazebo>
     <gazebo reference="l_hip_roll_link">
         <mu1>0.2</mu1>
