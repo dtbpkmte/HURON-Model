@@ -502,6 +502,8 @@ end
  
   Theta_COM(end+1)=Angle_COM;
   W_velocity_COM(end+1)=W_COM;
+  W_velocity_COM_2(end+1) = -((((m3*(l2*sin(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*sin(theta1)*theta1_dot + lc3*sin(theta1 + theta2 + theta3)*(theta1_dot + theta2_dot + theta3_dot)) + m2*(lc2*sin(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*sin(theta1)*theta1_dot) + lc1*m1*sin(theta1)*theta1_dot)*(l1*m2*sin(theta1) + l1*m3*sin(theta1) + lc1*m1*sin(theta1) + lc3*m3*sin(theta1 + theta2 + theta3) + l2*m3*sin(theta1 + theta2) + lc2*m2*sin(theta1 + theta2)))/(m1 + m2 + m3)^2 + ((m3*(l2*cos(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*cos(theta1)*theta1_dot + lc3*cos(theta1 + theta2 + theta3)*(theta1_dot + theta2_dot + theta3_dot)) + m2*(lc2*cos(theta1 + theta2)*(theta1_dot + theta2_dot) + l1*cos(theta1)*theta1_dot) + lc1*m1*cos(theta1)*theta1_dot)*(l1*m2*cos(theta1) + l1*m3*cos(theta1) + lc1*m1*cos(theta1) + lc3*m3*cos(theta1 + theta2 + theta3) + l2*m3*cos(theta1 + theta2) + lc2*m2*cos(theta1 + theta2)))/(m1 + m2 + m3)^2)*(m1 + m2 + m3)^2)/(abs(l1*m2*cos(theta1) + l1*m3*cos(theta1) + lc1*m1*cos(theta1) + lc3*m3*cos(theta1 + theta2 + theta3) + l2*m3*cos(theta1 + theta2) + lc2*m2*cos(theta1 + theta2))^2 + abs(l1*m2*sin(theta1) + l1*m3*sin(theta1) + lc1*m1*sin(theta1) + lc3*m3*sin(theta1 + theta2 + theta3) + l2*m3*sin(theta1 + theta2) + lc2*m2*sin(theta1 + theta2))^2);
+
   Position_COM(end+1)=X_COM;
   Linear_velocity_COM(end+1)=X_dot_COM;
   Time(end+1)=t;
@@ -629,14 +631,16 @@ hold on
 plot(Time, T_SMC_Angular(3,:) ,'b' )
 
 figure;
-subplot(2,1,1)
+subplot(2,2,1)
 plot(Time, Theta_COM_calculated)
 title('Theta_COM_calculated   ')
-subplot(2,1,2)
+subplot(2,2,2)
 plot(Time,W_velocity_COM_calculated )
 title(' W_velocity_COM_calculated   ')
+subplot(2,2,3)
+plot(Time, W_velocity_COM_calculated_2)
+title('Wcom2')
  
-
 function cop_x = calcCOP(r1_ft, l1_ft)
 %READCOP Returns COP_x in meters
 %   Outputs:
