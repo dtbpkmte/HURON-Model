@@ -85,7 +85,7 @@ T_hip_posture= [];
 
 % Main Loop
 count = 1;
-while(t <= 14)
+while(t <= 12)
 % t = toc;
 t = rostime('now');
 t = t.Sec + t.Nsec/1e9

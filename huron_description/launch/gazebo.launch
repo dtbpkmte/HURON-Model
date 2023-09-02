@@ -1,6 +1,6 @@
 <launch>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find huron_description)/worlds/default.world"/>
+    <arg name="world_name" value="$(find huron_description)/worlds/multiview.world"/>
     <arg name="use_sim_time" value="true"/>
   </include>
 
@@ -53,4 +53,7 @@
     respawn="false" output="screen">
     <remap from="/joint_states" to="/huron/joint_states" />
   </node>
+
+  <!-- Call camera service -->
+  <node pkg="rosservice" type="rosservice" name="multiview_camera" args="call --wait /gazebo/start_recording &quot;{cameras: {names: [&apos;&apos;, camera_1, camera_2, camera_3]}}&quot;" />
 </launch>
