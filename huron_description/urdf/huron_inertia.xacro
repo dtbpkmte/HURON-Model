@@ -32,6 +32,22 @@
         iyz="0"
         izz="0.008785454428" />
     </xacro:macro>
+
+    <!-- Upper body visualization link -->
+    <xacro:macro name="insert_inertia_upper_body_link">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00001" />
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001" />
+    </xacro:macro>
     
     <!-- left hip yaw link -->
     <xacro:macro name="insert_inertia_l_hip_yaw_link">
