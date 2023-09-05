@@ -98,6 +98,11 @@
         <material>Gazebo/SkyBlue</material>
         <selfCollide>false</selfCollide>
     </gazebo>
+    <!-- Upper body visualization -->
+    <gazebo reference="upper_body_link">
+        <material>Gazebo/SkyBlue</material>
+        <selfCollide>false</selfCollide>
+    </gazebo>
     <!-- Left Leg -->
     <gazebo reference="l_hip_yaw_link">
         <mu1>0.2</mu1>

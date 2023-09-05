@@ -67,7 +67,7 @@
         </inertial>
     </link>
     <joint name="upper_body_fixed" type="fixed">
-        <origin xyz="0 0 0.35" rpy="0 0 0"/>
+        <origin xyz="0 0 0.1505" rpy="0 0 0"/>
         <parent link="battery_link"/>
         <child link="upper_body_link"/>
     </joint>
