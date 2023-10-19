@@ -7,12 +7,13 @@ Included packages:
 - `huron_description`: The URDF/xacro model of HURON.
 - `huron_control`: The controllers of HURON.
 
-Currently, 2 models of HURON are being developed and tested:
+Currently, 3 models of HURON are being developed and tested:
 - `original-design`: The original robot foot design
 - `flat-feet`: Experimental - adding a flat layer to the bottom of the foot to increase stability.
+- `load-cell`: Currently the most stable - Using 2 6-DoF force-torque sensors at ankles to measure force
 
 Branch naming convention:
-- `main`: Unused - Please use *stable branches instead. Currently, main contains the `original-design`
+- `main`: The most stable and best-performing version. Currently, main contains the `original-design`
 - `-stable`: Stable branch.
 - `-dev`: Development branch.
 ## How to run

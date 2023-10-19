@@ -1,5 +1,8 @@
 <launch>
-  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find huron_description)/worlds/multiview.world"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find huron_description)/urdf/huron.xacro'" />
 
@@ -16,7 +19,7 @@
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-urdf -model huron_description -z 1.1275 -param robot_description"
+    args="-urdf -model huron_description -z 1.1227 -param robot_description"
     output="screen" />
 
  <!-- <node
@@ -50,4 +53,7 @@
     respawn="false" output="screen">
     <remap from="/joint_states" to="/huron/joint_states" />
   </node>
+
+  <!-- Call camera service -->
+  <node pkg="rosservice" type="rosservice" name="multiview_camera" args="call --wait /gazebo/start_recording &quot;{cameras: {names: [&apos;&apos;, camera_1, camera_2, camera_3]}}&quot;" />
 </launch>

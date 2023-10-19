@@ -54,6 +54,24 @@
         <child link="battery_link"/>
     </joint>
 
+    <!-- Upper body visualization -->
+    <link name="upper_body_link">
+        <visual>
+            <xacro:insert_mesh_upper_body_link />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_upper_body_link />
+        </collision>
+        <inertial>
+            <xacro:insert_inertia_upper_body_link />
+        </inertial>
+    </link>
+    <joint name="upper_body_fixed" type="fixed">
+        <origin xyz="0 0 0.1505" rpy="0 0 0"/>
+        <parent link="battery_link"/>
+        <child link="upper_body_link"/>
+    </joint>
+
     <!-- imu joint -->
     <joint name="imu_fixed" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -63,6 +81,6 @@
     <link name="imu_link"></link>
     
     <!-- leg link -->
-    <xacro:huron_right_leg parent="base_footprint" dxl_effort="1000" dxl_speed="3"/>
-    <xacro:huron_left_leg parent="base_footprint" dxl_effort="1000" dxl_speed="3"/>
+    <xacro:huron_right_leg parent="base_footprint" dxl_effort="1000000" dxl_speed="3000"/>
+    <xacro:huron_left_leg parent="base_footprint" dxl_effort="1000000" dxl_speed="3000"/>
 </robot>
